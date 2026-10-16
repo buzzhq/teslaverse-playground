@@ -3,6 +3,7 @@ const D=window.TV_DATA, M=window.TVModel, A=D.actuals;
 let P=Object.assign({},D.starter);
 const pct=v=>(v*100).toFixed(1).replace(/\.0$/,"")+"%", usd=v=>"US$"+v.toFixed(2), int=v=>Math.round(v).toLocaleString("en-AU");
 const info=(what,evid,bb,move)=>`<p><b>What it means:</b> ${what}</p><p><b>Evidence:</b> ${evid}</p><p><b>Bulls vs bears:</b> ${bb}</p><p><b>Push it:</b> ${move}</p>`;
+const SHORT={"disc": "How much less future money is worth today; higher = more risk = lower value.", "tg": "How fast cash flows grow forever after 2035; higher = more value, but must stay below the discount rate.", "shares": "How many slices Tesla is cut into; more shares = less value per share.", "carG1": "How fast car sales grow each year 2026-2030; higher = more revenue.", "carG2": "How fast car sales grow each year 2031-2035, when the market is more mature.", "asp": "Whether the average price per car rises or falls each year.", "carM": "Cents of cash Tesla keeps from each $1 of car sales after all costs and factory spending.", "enG1": "How fast battery storage installs (GWh) grow each year 2026-2030.", "enG2": "How fast storage installs grow each year 2031-2035.", "gwhP": "Whether the price Tesla gets per GWh of storage rises or falls each year.", "enM": "Cents of cash Tesla keeps from each $1 of energy sales.", "pBear": "Chance robotaxi stays small (~20,000 cars by 2035). The three chances always add to 100%.", "pBase": "Chance of a solid robotaxi business (~250,000 cars by 2035).", "pBull": "Chance of the big win (~2 million cars by 2035). This drives most robotaxi value.", "fleetBase": "Robotaxis on the road in 2035 in the Base story; the biggest robotaxi lever.", "mBase": "Cash kept per $1 of robotaxi revenue in 2035 in the Base story.", "fleetBull": "Robotaxis on the road in 2035 in the Bull story.", "mBull": "Cash kept per $1 of robotaxi revenue in 2035 in the Bull story.", "fleetBear": "Robotaxis on the road in 2035 in the Bear story (small effect).", "mBear": "Cash kept per $1 of robotaxi revenue in 2035 in the Bear story (small effect)."};const INTRO={"Shared (affects every business)": "These settings apply to every business: how risky Tesla is, long-run growth, and the share count.", "Cars": "Tesla’s main business today: about 73% of 2025 revenue. Steady but under pressure from price wars.", "Energy": "Megapack and Powerwall batteries for homes, utilities and data centres: about 13% of 2025 revenue and growing fast.", "Robotaxi": "Driverless ride-hailing: tiny today with no reported revenue, but potentially huge. Three stories, weighted by chance."};
 const G=[
 {group:"Shared (affects every business)",items:[
  {k:"disc",l:"Discount rate",min:.07,max:.14,step:.005,f:pct,i:info("The yearly return an investor demands for waiting and taking risk. Future cash is divided by (1 + rate) for every year you wait, so it's worth less today.","Many analysts use 8-11% for large companies; Tesla's shares are very volatile, which argues for the higher end. Starter: 10%.","Bulls say Tesla is now a giant, established company, so a lower rate fits. Bears say its future is highly uncertain, so a higher rate fits.","UP = every business is worth less today (the far-future robotaxi and terminal values shrink the most). DOWN = everything is worth more.")},
@@ -38,15 +39,15 @@ const PRESETS={
  pessimistic:{p:{disc:.11,tg:.025,shares:3950,carG1:0,carG2:.01,asp:-.02,carM:.05,enG1:.06,enG2:.03,gwhP:-.04,enM:.08,pBear:65,pBase:30,pBull:5,fleetBase:100000,mBase:.15},note:"<b>Pessimistic</b>: an 11% discount rate, more share dilution (3.95bn); flat car volumes and 2% price cuts a year (the 2023-25 pattern); storage slowing to 6%; robotaxi mostly stays small (65% Bear, 5% Bull)."}
 };
 // build controls
-const C=document.getElementById("controls"); let html="";
-G.forEach(g=>{html+=`<h3>${g.group}</h3>`; g.items.forEach(s=>{
- html+=`<div class="sl"><div class="row"><label>${s.l}<button class="i" data-i="${s.k}" aria-label="explain">i</button></label>${s.toggle?"":`<output id="o_${s.k}"></output>`}</div>`;
+const C=document.getElementById("assumptions"); let html="";
+G.forEach(g=>{html+=`<h3>${g.group}</h3><p class="gi">${INTRO[g.group]}</p>`; g.items.forEach(s=>{
+ html+=`<div class="sl"><div class="row"><label>${s.l}</label>${s.toggle?"":`<output id="o_${s.k}"></output>`}</div>`;
  html+= s.toggle?`<div class="toggle">${s.toggle.map(t=>`<button data-tog="${s.k}" data-v="${t[0]}">${t[1]}</button>`).join("")}</div>`
   :`<input type="range" id="r_${s.k}" min="${s.log?Math.log(s.min):s.min}" max="${s.log?Math.log(s.max):s.max}" step="${s.log?0.01:s.step}">`;
- html+=`<div class="info" id="i_${s.k}">${s.i}</div></div>`;})});
+ html+=`<p class="sd">${SHORT[s.k]}</p><button class="exp" data-i="${s.k}">Explain ▾</button><div class="info" id="i_${s.k}">${s.i}</div></div>`;})});
 C.innerHTML="<h2>Assumptions</h2>"+html;
 const all=G.flatMap(g=>g.items);
-C.addEventListener("click",e=>{const b=e.target.closest("[data-i]");if(b)document.getElementById("i_"+b.dataset.i).classList.toggle("open");
+C.addEventListener("click",e=>{const b=e.target.closest("[data-i]");if(b){const o=document.getElementById("i_"+b.dataset.i).classList.toggle("open");b.textContent=o?"Hide ▴":"Explain ▾";}
  const t=e.target.closest("[data-tog]");if(t){P[t.dataset.tog]=+t.dataset.v;update();}});
 all.filter(s=>!s.toggle).forEach(s=>document.getElementById("r_"+s.k).addEventListener("input",ev=>{
  let v=+ev.target.value; if(s.log){v=Math.exp(v);v=Math.round(v/s.step)*s.step;}
@@ -91,6 +92,8 @@ function update(preset){
  [ps.cash,ps.cars,ps.energy,ps.robotaxi].forEach((v,i)=>build.data.datasets[i].data[0]=v); build.update("none");
  fcfC.data.datasets[0].data=r.c.fcf;fcfC.data.datasets[1].data=r.e.fcf;fcfC.data.datasets[2].data=r.r.fcf;fcfC.update("none");
  fleetC.data.datasets[0].data=r.r.bear.fleet;fleetC.data.datasets[1].data=r.r.base.fleet;fleetC.data.datasets[2].data=r.r.bull.fleet;fleetC.update("none");
+ const CM=[["Net cash",ps.cash,"Cash in the bank minus debt, shared out per share.",COL.cash],["Cars",ps.cars,"Today's car business: 10 years of car cash flow plus everything after.",COL.cars],["Energy",ps.energy,"Battery storage business, valued the same way.",COL.energy],["Robotaxi",ps.robotaxi,"Probability-weighted average of the Bear, Base and Bull stories.",COL.robotaxi]];
+ comp.innerHTML=CM.map(c=>`<div class="cc" style="border-left-color:${c[3]}"><div class="row"><b>${c[0]}</b><span><b>${usd(c[1])}</b> <span class="note">${pct(c[1]/ps.total)}</span></span></div><div class="note">${c[2]}</div></div>`).join("")+`<div class="cc tot"><div class="row"><b>Model total</b><b>${usd(ps.total)}</b></div><div class="note">vs share price ${usd(A.sharePrice)}</div></div>`;
  const sh=P.shares; scen.innerHTML=`<table><tr><th>Scenario</th><th>Value US$m</th><th>Per share</th><th>Prob.</th></tr>`+
   [["Bear",r.r.bear,P.pBear],["Base",r.r.base,P.pBase],["Bull",r.r.bull,P.pBull]].map(x=>`<tr><td>${x[0]}</td><td>${int(x[1].ev)}</td><td>${usd(x[1].ev/sh)}</td><td>${Math.round(x[2])}%</td></tr>`).join("")+
   `<tr><td><b>Weighted</b></td><td><b>${int(r.r.ev)}</b></td><td><b>${usd(ps.robotaxi)}</b></td><td>100%</td></tr></table>`;
