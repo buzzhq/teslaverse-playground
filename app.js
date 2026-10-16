@@ -1,0 +1,100 @@
+(function(){
+const D=window.TV_DATA, M=window.TVModel, A=D.actuals;
+let P=Object.assign({},D.starter);
+const pct=v=>(v*100).toFixed(1).replace(/\.0$/,"")+"%", usd=v=>"US$"+v.toFixed(2), int=v=>Math.round(v).toLocaleString("en-AU");
+const info=(what,evid,bb,move)=>`<p><b>What it means:</b> ${what}</p><p><b>Evidence:</b> ${evid}</p><p><b>Bulls vs bears:</b> ${bb}</p><p><b>Push it:</b> ${move}</p>`;
+const G=[
+{group:"Shared (affects every business)",items:[
+ {k:"disc",l:"Discount rate",min:.07,max:.14,step:.005,f:pct,i:info("The yearly return an investor demands for waiting and taking risk. Future cash is divided by (1 + rate) for every year you wait, so it's worth less today.","Many analysts use 8-11% for large companies; Tesla's shares are very volatile, which argues for the higher end. Starter: 10%.","Bulls say Tesla is now a giant, established company, so a lower rate fits. Bears say its future is highly uncertain, so a higher rate fits.","UP = every business is worth less today (the far-future robotaxi and terminal values shrink the most). DOWN = everything is worth more.")},
+ {k:"tg",l:"Terminal growth (after year 10)",min:.01,max:.05,step:.0025,f:pct,i:info("How fast cash flows grow forever after 2035. Must stay below the discount rate.","Long-run economies grow about 2-4% a year in dollar terms; few companies beat that forever. Starter: 3%.","Bulls: Tesla's markets (autonomy, energy) will keep growing for decades. Bears: competition caps everything eventually.","UP = bigger 'terminal value', which is already over half of each business's value. Small changes swing the answer a lot.")},
+ {k:"shares",l:"Share count",toggle:[[3540,"3.54bn (Q2 2026 diluted avg)"],[3950,"~3.95bn (incl. extra dilution)"]],i:info("How many slices the company is cut into. Value per share = total value / shares.","Tesla reported 3.54bn diluted weighted-average shares in Q2 2026 (the Sheet's figure). A higher ~3.95bn count is an illustrative allowance for more stock awards and options; check the latest 10-Q for the exact figure.","Bulls use the reported diluted count. Bears add expected future dilution from big executive pay packages.","MORE shares = each share is worth less, by about 10% at 3.95bn.")}
+]},
+{group:"Cars",items:[
+ {k:"carG1",l:"Deliveries growth, years 1-5",min:-.05,max:.25,step:.01,f:pct,i:info("How fast the number of cars Tesla sells grows each year from 2026 to 2030.","Deliveries fell from 1.81m (2023) to 1.79m (2024) to 1.64m (2025). The first 3 quarters of 2026 were about 1.32m, slightly ahead of 2025. Starter: +5%/yr.","Bulls: cheaper models and new markets restart growth. Bears: older line-up, strong Chinese rivals (BYD etc.) and price wars.","UP = more revenue and cash flow every year after.")},
+ {k:"carG2",l:"Deliveries growth, years 6-10",min:-.05,max:.15,step:.01,f:pct,i:info("Growth from 2031 to 2035, when the car market is more mature.","Global car sales grow only low single digits. Starter: +3%/yr.","Bulls: EVs keep taking share from petrol cars. Bears: car sales plateau as robotaxis reduce car ownership.","UP = higher year-10 cash flow, which also lifts the terminal value.")},
+ {k:"asp",l:"Average selling price change / yr",min:-.06,max:.04,step:.005,f:pct,i:info("How the average price per car (about US$42,500 in 2025, incl. credits and leasing) changes each year.","Tesla cut prices repeatedly in 2023-24 and launched cheaper versions; regulatory credit income is shrinking. Starter: flat.","Bulls: software (FSD) and premium trims lift revenue per car. Bears: cheaper models and price wars keep pushing prices down.","DOWN 2%/yr compounds to about 18% lower prices by 2035.")},
+ {k:"carM",l:"Car free cash flow margin",min:.02,max:.16,step:.005,f:pct,i:info("Cash left from each $1 of car revenue after all costs, tax and factory spending (capex).","2025 automotive gross margin was 17.8% (15.4% without regulatory credits), before overheads, R&D and capex. Whole-company FCF was US$6.2bn on US$94.8bn revenue (about 6.6%). Starter: 8%.","Bulls: cheaper production (unboxed process) and software sales raise margins. Bears: price wars, tariffs and falling credits squeeze them.","Each +1 point adds roughly US$3 a share at starter settings.")}
+]},
+{group:"Energy",items:[
+ {k:"enG1",l:"Storage deployment growth, years 1-5",min:-.05,max:.4,step:.01,f:pct,i:info("Yearly growth in battery storage installed (GWh), 2026-2030.","Deployments rose 49% in 2025 (31.4 to 46.7 GWh) but Q1-Q3 2026 was about +11% (36.0 GWh vs 32.5). Data-centre and utility demand is a big driver. Starter: +12%.","Bulls: AI data centres and grids need huge storage. Bears: Chinese competition, tariffs, and lumpy utility orders.","UP = energy becomes a much larger slice; at 25% it rivals the car business in later years.")},
+ {k:"enG2",l:"Storage deployment growth, years 6-10",min:-.05,max:.25,step:.01,f:pct,i:info("Growth from 2031 to 2035.","Young industries slow as they mature. Starter: +6%.","Bulls: storage demand keeps compounding with renewables. Bears: market saturates and commoditises.","UP = bigger year-10 cash flow and terminal value.")},
+ {k:"gwhP",l:"Revenue per GWh change / yr",min:-.08,max:.03,step:.005,f:pct,i:info("How the price Tesla gets per GWh of storage changes. 2025 was about US$273m per GWh (segment revenue / GWh, includes solar).","Battery cell costs tend to fall, and competitors cut prices. Starter: -2%/yr.","Bulls: software and services (Autobidder) hold up value. Bears: commodity pricing.","DOWN = more GWh needed just to stand still on revenue.")},
+ {k:"enM",l:"Energy free cash flow margin",min:.04,max:.25,step:.005,f:pct,i:info("Cash left from each $1 of energy revenue after all costs, tax and capex.","Energy gross margin was 29.8% in 2025, but swings: about 40% in Q1 2026, 20% in Q2 2026. Starter: 12% (about 40% of gross margin).","Bulls: scale and software keep margins high. Bears: tariffs on Chinese cells and competition cut them.","Each +1 point adds about US$0.70 a share at starter settings.")}
+]},
+{group:"Robotaxi",items:[
+ {k:"pBear",l:"Probability: Bear",prob:1,min:0,max:100,step:1,f:v=>v+"%",i:info("Chance the robotaxi stays small: about 20,000 cars by 2035, a 10% margin by year 10.","Today: ~2.4m paid miles in total, 6 cities with no safety driver, no disclosed revenue. Starter: 45%.","Bears: regulation, safety incidents and Waymo's lead keep it niche.","Probabilities always add to 100%: moving one rescales the other two in proportion.")},
+ {k:"pBase",l:"Probability: Base",prob:1,min:0,max:100,step:1,f:v=>v+"%",i:info("Chance of a solid but not world-changing business: about 250,000 cars in ~40 metros by 2035.","Waymo runs ~4,000 cars today; 250,000 would be about 60 times that. Starter: 40%.","Middle ground: works technically, but scaling permits, cars and depots takes years.","UP = more weight on a few dollars a share.")},
+ {k:"pBull",l:"Probability: Bull",prob:1,min:0,max:100,step:1,f:v=>v+"%",i:info("Chance of the big win: ~2 million cars across the US, Europe and China, 30% margin.","Cybercab capacity is over 125,000 a year at Giga Texas (capacity, not output). Starter: 15%.","Bulls: Tesla's camera-only approach scales cheaply. Bears: still unproven without safety monitors at scale.","This drives most of robotaxi value - about 80% at starter settings.")},
+ {k:"fleetBase",l:"Base: fleet in year 10",min:10000,max:2000000,step:10000,f:int,log:1,i:info("Robotaxis on the road in 2035 in the Base story. Each car does 50,000 paid miles a year at US$1.50/mile, falling 4% a year; Tesla keeps 80% of fares.","Community trackers counted ~1,111 Tesla robotaxis in Oct 2026 (409 unsupervised).","Bulls: millions of customer cars can join. Bears: each city needs permits and depots.","Fleet size matters far more than margin.")},
+ {k:"mBase",l:"Base: FCF margin in year 10",min:0,max:.45,step:.01,f:pct,i:info("Cash kept from each $1 of Tesla's robotaxi revenue in 2035 (starts at -80% in year 1 and climbs in a straight line).","No robotaxi profit is disclosed anywhere. Uber's margins are thin; a driverless fleet saves the driver but must pay for cars, charging, cleaning and insurance.","Bulls: no driver = very high margins. Bears: competition passes savings to riders.","UP = more value, but less powerful than fleet size.")},
+ {k:"fleetBull",l:"Bull: fleet in year 10",min:100000,max:5000000,step:50000,f:int,log:1,i:info("Fleet in 2035 in the Bull story (60,000 miles/car/yr, Tesla keeps 60% of fares).","Starter 2 million is roughly 16 years of current Cybercab capacity, or many customer cars joining.","Bulls: tens of millions of Teslas could join. Bears: unrealistic within 10 years.","UP = big jumps in value, scaled by the Bull probability.")},
+ {k:"mBull",l:"Bull: FCF margin in year 10",min:0,max:.5,step:.01,f:pct,i:info("Cash margin in 2035 for the Bull story (starts at -50%).","No disclosed data.","Bulls: software-like margins. Bears: a commodity ride market.","UP = more value, weighted by Bull probability.")},
+ {k:"fleetBear",l:"Bear: fleet in year 10",min:2000,max:200000,step:1000,f:int,log:1,i:info("Fleet in 2035 in the Bear story (40,000 miles/car/yr, Tesla owns the cars and keeps 100% of fares).","Today's fleet is about 1,000 cars.","Bears: stays a small pilot.","Small effect - Bear barely moves the total.")},
+ {k:"mBear",l:"Bear: FCF margin in year 10",min:-.1,max:.3,step:.01,f:pct,i:info("Cash margin in 2035 for the Bear story (starts at -100%).","No disclosed data.","Owning a fleet is expensive.","Small effect.")}
+]}];
+const PRESETS={
+ cautious:{p:{},note:"<b>Cautious</b> = the Sheet's starter assumptions: modest car growth, energy growth near 2026's pace (~11%), and only a 15% chance of the Bull robotaxi."},
+ optimistic:{p:{disc:.09,tg:.03,carG1:.10,carG2:.05,asp:0,carM:.11,enG1:.25,enG2:.12,gwhP:-.01,enM:.16,pBear:20,pBase:45,pBull:35,fleetBase:500000,mBase:.25,fleetBull:3000000,mBull:.35},note:"<b>Optimistic</b>: a 9% discount rate (Tesla seen as lower risk); car volumes back to double-digit growth with margins near 2023 levels; storage growing 25%/yr (between 2025's +49% and 2026's +11%) on data-centre demand; a 35% chance of the Bull robotaxi with 3m cars."},
+ pessimistic:{p:{disc:.11,tg:.025,shares:3950,carG1:0,carG2:.01,asp:-.02,carM:.05,enG1:.06,enG2:.03,gwhP:-.04,enM:.08,pBear:65,pBase:30,pBull:5,fleetBase:100000,mBase:.15},note:"<b>Pessimistic</b>: an 11% discount rate, more share dilution (3.95bn); flat car volumes and 2% price cuts a year (the 2023-25 pattern); storage slowing to 6%; robotaxi mostly stays small (65% Bear, 5% Bull)."}
+};
+// build controls
+const C=document.getElementById("controls"); let html="";
+G.forEach(g=>{html+=`<h3>${g.group}</h3>`; g.items.forEach(s=>{
+ html+=`<div class="sl"><div class="row"><label>${s.l}<button class="i" data-i="${s.k}" aria-label="explain">i</button></label>${s.toggle?"":`<output id="o_${s.k}"></output>`}</div>`;
+ html+= s.toggle?`<div class="toggle">${s.toggle.map(t=>`<button data-tog="${s.k}" data-v="${t[0]}">${t[1]}</button>`).join("")}</div>`
+  :`<input type="range" id="r_${s.k}" min="${s.log?Math.log(s.min):s.min}" max="${s.log?Math.log(s.max):s.max}" step="${s.log?0.01:s.step}">`;
+ html+=`<div class="info" id="i_${s.k}">${s.i}</div></div>`;})});
+C.innerHTML="<h2>Assumptions</h2>"+html;
+const all=G.flatMap(g=>g.items);
+C.addEventListener("click",e=>{const b=e.target.closest("[data-i]");if(b)document.getElementById("i_"+b.dataset.i).classList.toggle("open");
+ const t=e.target.closest("[data-tog]");if(t){P[t.dataset.tog]=+t.dataset.v;update();}});
+all.filter(s=>!s.toggle).forEach(s=>document.getElementById("r_"+s.k).addEventListener("input",ev=>{
+ let v=+ev.target.value; if(s.log){v=Math.exp(v);v=Math.round(v/s.step)*s.step;}
+ if(s.prob) setProb(s.k,v); else P[s.k]=v; update();}));
+function setProb(k,v){const ks=["pBear","pBase","pBull"],o=ks.filter(x=>x!==k),rest=P[o[0]]+P[o[1]];P[k]=v;
+ const left=100-v; if(rest<=0){P[o[0]]=left/2;P[o[1]]=left/2;}else{P[o[0]]=Math.round(left*P[o[0]]/rest);P[o[1]]=left-P[o[0]];}}
+document.querySelectorAll("[data-preset]").forEach(b=>b.onclick=()=>{P=Object.assign({},D.starter,PRESETS[b.dataset.preset].p);update(b.dataset.preset);});
+document.getElementById("reset").onclick=()=>{P=Object.assign({},D.starter);update("cautious");};
+document.getElementById("presetNotes").innerHTML=Object.values(PRESETS).map(p=>`<p>${p.note}</p>`).join("");
+document.getElementById("facts").innerHTML=D.robotaxiFacts.map(f=>`<li>${f}</li>`).join("");
+// charts
+Chart.defaults.color="#8b949e";Chart.defaults.borderColor="#30363d";Chart.defaults.maintainAspectRatio=false;Chart.defaults.animation=false;
+const COL={cash:"#8b949e",cars:"#e31937",energy:"#3fb950",robotaxi:"#58a6ff",price:"#484f58"};
+const years=Array.from({length:10},(_,i)=>String(A.baseYear+1+i));
+const build=new Chart(cBuild,{type:"bar",data:{labels:["Model value","Share price"],datasets:[
+ {label:"Net cash",data:[0,null],backgroundColor:COL.cash},{label:"Cars",data:[0,null],backgroundColor:COL.cars},
+ {label:"Energy",data:[0,null],backgroundColor:COL.energy},{label:"Robotaxi",data:[0,null],backgroundColor:COL.robotaxi},
+ {label:"Share price",data:[null,A.sharePrice],backgroundColor:COL.price}]},
+ options:{indexAxis:"y",scales:{x:{stacked:true,title:{display:true,text:"US$ per share"}},y:{stacked:true}},plugins:{tooltip:{callbacks:{label:c=>c.dataset.label+": "+usd(c.raw)}}}}});
+const fcfC=new Chart(cFcf,{type:"line",data:{labels:years,datasets:[{label:"Cars",borderColor:COL.cars,data:[]},{label:"Energy",borderColor:COL.energy,data:[]},{label:"Robotaxi (weighted)",borderColor:COL.robotaxi,data:[]}]}});
+const fleetC=new Chart(cFleet,{type:"line",data:{labels:years,datasets:[{label:"Bear fleet",borderColor:"#f0883e",data:[]},{label:"Base fleet",borderColor:COL.robotaxi,data:[]},{label:"Bull fleet",borderColor:"#d2a8ff",data:[]}]},options:{scales:{y:{type:"logarithmic",title:{display:true,text:"vehicles (log scale)"}}}}});
+const Q=D.quarters, mk=(id,type,ds,yfmt,title)=>new Chart(document.getElementById(id),{type,data:{labels:Q,datasets:ds},options:{plugins:{title:{display:true,text:title}},scales:{x:{stacked:type==="bar"&&ds.length>1},y:{stacked:type==="bar"&&ds.length>1,ticks:{callback:yfmt}}}}});
+mk("hDel","bar",[{label:"Deliveries",data:D.deliveries,backgroundColor:COL.cars}],v=>(v/1000)+"k","Quarterly car deliveries");
+mk("hGwh","bar",[{label:"GWh deployed",data:D.storageGWh,backgroundColor:COL.energy}],v=>v,"Energy storage deployed (GWh)");
+mk("hRev","bar",[{label:"Automotive",data:D.autoRev,backgroundColor:COL.cars},{label:"Energy",data:D.energyRev,backgroundColor:COL.energy},{label:"Services & other",data:D.servRev,backgroundColor:"#d2a8ff"}],v=>"$"+(v/1000)+"bn","Revenue mix (US$)");
+mk("hGm","line",[{label:"Automotive GM",data:D.autoGM,borderColor:COL.cars},{label:"Energy GM",data:D.energyGM,borderColor:COL.energy}],v=>(v*100).toFixed(0)+"%","Gross margin %");
+function whatItTakes(){
+ const need=A.sharePrice; const t=Object.assign({},P,{pBear:0,pBase:0,pBull:100}); const max=M.run(t).ps.total;
+ if(max<need) return `What would it take? Even a <b>100% certain Bull robotaxi</b> gives only ${usd(max)} a share here. To reach US$375 you'd also need bigger fleets, higher margins or a lower discount rate. Try raising the Bull fleet.`;
+ let lo=0,hi=100; for(let i=0;i<40;i++){const m=(lo+hi)/2,rest=100-m,r=P.pBear+P.pBase||1;
+  const v=M.run(Object.assign({},P,{pBull:m,pBear:rest*P.pBear/r,pBase:rest*P.pBase/r})).ps.total; v<need?lo=m:hi=m;}
+ return `What would it take? With everything else as set, a <b>~${hi.toFixed(0)}% Bull probability</b> would justify US$375.`;
+}
+function update(preset){
+ const r=M.run(P), ps=r.ps;
+ all.forEach(s=>{ if(s.toggle){document.querySelectorAll(`[data-tog="${s.k}"]`).forEach(b=>b.classList.toggle("on",+b.dataset.v===P[s.k]));return;}
+  const el=document.getElementById("r_"+s.k); el.value=s.log?Math.log(P[s.k]):P[s.k]; document.getElementById("o_"+s.k).textContent=s.f(P[s.k]);});
+ if(preset!==undefined) document.querySelectorAll("[data-preset]").forEach(b=>b.classList.toggle("on",b.dataset.preset===preset));
+ hVal.textContent=usd(ps.total); hPrice.textContent=usd(A.sharePrice); hGap.textContent=pct(Math.max(0,r.gapClosed));
+ hText.innerHTML=`Cash ${usd(ps.cash)} + cars ${usd(ps.cars)} + energy ${usd(ps.energy)} + robotaxi ${usd(ps.robotaxi)} = <b>${usd(ps.total)}</b> vs price ${usd(A.sharePrice)}. ${ps.total<A.sharePrice?`The market pays ${(A.sharePrice/ps.total).toFixed(1)}x this model's value.`:"The model now exceeds the share price."}`+(P.tg>=P.disc-0.01?` <span class="warn">Terminal growth is very close to the discount rate, so values explode - unrealistic.</span>`:"");
+ wwit.innerHTML=whatItTakes();
+ [ps.cash,ps.cars,ps.energy,ps.robotaxi].forEach((v,i)=>build.data.datasets[i].data[0]=v); build.update("none");
+ fcfC.data.datasets[0].data=r.c.fcf;fcfC.data.datasets[1].data=r.e.fcf;fcfC.data.datasets[2].data=r.r.fcf;fcfC.update("none");
+ fleetC.data.datasets[0].data=r.r.bear.fleet;fleetC.data.datasets[1].data=r.r.base.fleet;fleetC.data.datasets[2].data=r.r.bull.fleet;fleetC.update("none");
+ const sh=P.shares; scen.innerHTML=`<table><tr><th>Scenario</th><th>Value US$m</th><th>Per share</th><th>Prob.</th></tr>`+
+  [["Bear",r.r.bear,P.pBear],["Base",r.r.base,P.pBase],["Bull",r.r.bull,P.pBull]].map(x=>`<tr><td>${x[0]}</td><td>${int(x[1].ev)}</td><td>${usd(x[1].ev/sh)}</td><td>${Math.round(x[2])}%</td></tr>`).join("")+
+  `<tr><td><b>Weighted</b></td><td><b>${int(r.r.ev)}</b></td><td><b>${usd(ps.robotaxi)}</b></td><td>100%</td></tr></table>`;
+}
+const chk=M.selfCheck(); document.getElementById("check").textContent=chk.msg;
+update("cautious");
+})();

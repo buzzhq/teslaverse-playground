@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teslaverse Playground</title><link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script></head><body>
+<header><h1>Teslaverse Playground</h1><p class="sub">Move the sliders, watch what Tesla might be worth. Educational only, <b>not financial advice</b>.</p></header>
+<main>
+<section class="card intro"><h2>The idea in 30 seconds</h2>
+<p><b>Sum of the parts:</b> we value each Tesla business on its own (cars, energy storage, robotaxi), add the cash Tesla holds minus its debt, then divide by the number of shares. Each business is valued with a <b>DCF</b>: we guess its cash flow over the next 10 years, add a "terminal value" for everything after that, and shrink future dollars back to today's dollars using a <b>discount rate</b>.</p>
+<p>The starter settings reproduce the Teslaverse Valuation Model (v4). Every number is a guess you can change - that's the point. Tap <span class="i">i</span> next to any slider for a plain-English explanation.</p></section>
+
+<section class="card headline"><div class="big"><div><span class="lbl">Model value per share</span><span id="hVal" class="num">-</span></div>
+<div><span class="lbl">Share price</span><span id="hPrice" class="num muted">-</span></div>
+<div><span class="lbl">Robotaxi closes</span><span id="hGap" class="num accent">-</span><span class="lbl">of the gap</span></div></div>
+<p id="hText" class="note"></p><p id="wwit" class="note wwit"></p>
+<div class="btns"><button data-preset="cautious">Cautious (starter)</button><button data-preset="optimistic">Optimistic</button><button data-preset="pessimistic">Pessimistic</button><button id="reset" class="ghost">Reset to starter</button></div>
+<details class="presets"><summary>Why these presets?</summary><div id="presetNotes"></div></details></section>
+
+<section class="card"><h2>Value build-up vs share price</h2><div class="chartbox"><canvas id="cBuild"></canvas></div>
+<p class="note">Each coloured block is US$ per share. The grey bar is what the market pays. The gap is what the market expects beyond these assumptions (bigger robotaxi, Optimus, higher margins, or lower risk).</p></section>
+
+<div class="grid">
+<section class="card controls" id="controls"></section>
+<div>
+<section class="card"><h2>Projected free cash flow by business (US$m)</h2><div class="chartbox"><canvas id="cFcf"></canvas></div>
+<p class="note">Robotaxi is the probability-weighted average of the three stories: early losses, then growth.</p></section>
+<section class="card"><h2>Robotaxi scenarios</h2><div id="scen"></div><div class="chartbox"><canvas id="cFleet"></canvas></div>
+<ul class="facts" id="facts"></ul></section>
+</div></div>
+
+<section class="card"><h2>History: what actually happened</h2><p class="note">Real reported quarterly figures (Tesla quarterly updates), Q1 2023 to Q3 2026. Q3 2026 has deliveries and storage only.</p>
+<div class="hist"><div class="chartbox"><canvas id="hDel"></canvas></div><div class="chartbox"><canvas id="hGwh"></canvas></div>
+<div class="chartbox"><canvas id="hRev"></canvas></div><div class="chartbox"><canvas id="hGm"></canvas></div></div></section>
+
+<footer class="note"><p>Data: Teslaverse Valuation Model v4 (built 9 Oct 2026) from Tesla's public quarterly updates and filings; FY2025 actuals; balance sheet at 30 Jun 2026; share price US$375.00 at 8 Oct 2026 close; robotaxi facts from Tesla's Q2 2026 update and public trackers (Oct 2026). Robotaxi revenue is not disclosed by Tesla, so all robotaxi numbers are assumptions. Educational model, not financial advice.</p><p id="check"></p></footer>
+</main>
+<script src="data.js"></script><script src="model.js"></script><script src="app.js"></script></body></html>
