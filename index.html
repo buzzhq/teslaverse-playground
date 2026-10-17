@@ -2,9 +2,10 @@
 <title>Teslaverse Playground</title><link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script></head><body>
 <header><h1>Teslaverse Playground</h1><p class="sub">Move the sliders, watch what Tesla might be worth. Educational only, <b>not financial advice</b>.</p></header>
-<nav class="tabs"><a href="#overview">Overview</a><a href="#cars">Cars</a><a href="#energy">Energy</a><a href="#robotaxi">Robotaxi</a><a href="#optimus">Optimus</a><a href="#fsd">FSD</a><a href="#beyond" class="sep">Beyond Tesla:</a><a href="#spacex">SpaceX + xAI</a><a href="#nvidia">Nvidia</a><a href="#trends">Trends</a><a href="#sources">Sources</a></nav>
+<nav class="tabs top" id="topbar"><a data-co="tesla" href="#tesla/overview">Tesla</a><a data-co="spacex" href="#spacex/overview">SpaceX (incl. xAI)</a><a data-co="nvidia" href="#nvidia/overview">Nvidia</a><a data-co="sources" href="#sources" class="srcl">Sources</a></nav>
+<nav class="tabs sub" id="subbar"></nav>
 <main>
-<section class="card" id="overview"><h2>Overview</h2>
+<section class="card panel" data-co="tesla" data-sub="overview" id="overview"><h2>Overview</h2>
 <p><b>Sum of the parts:</b> we value each Tesla business on its own (cars, energy storage, robotaxi, Optimus robots, FSD software), add the cash Tesla holds minus its debt, then divide by the number of shares. Each business is valued with a <b>DCF</b>: guess its cash flow for 10 years, add a "terminal value" for everything after, and shrink future dollars back to today's using a <b>discount rate</b>.</p>
 <p class="note">Starter settings reproduce the Teslaverse Valuation Model v4 (cars, energy, robotaxi, cash = US$50.30) and add Optimus and FSD, which live only on this site. Tap <b>Explain ▾</b> under any slider.</p>
 <div class="headline"><div class="big"><div><span class="lbl">Model value per share</span><span id="hVal" class="num">-</span></div>
@@ -20,36 +21,41 @@
 <h3>Projected free cash flow by business (US$m)</h3><div class="chartbox"><canvas id="cFcf"></canvas></div>
 <div id="ctl_overview"></div></section>
 
-<section class="card" id="cars"><h2>Cars</h2><div class="key" id="k_cars"></div><div class="chartbox"><canvas id="cCars"></canvas></div><div id="ctl_cars"></div></section>
-<section class="card" id="energy"><h2>Energy</h2><div class="key" id="k_energy"></div><div class="chartbox"><canvas id="cEnergy"></canvas></div><div id="ctl_energy"></div></section>
-<section class="card" id="robotaxi"><h2>Robotaxi</h2><div class="key" id="k_robotaxi"></div><div id="scen"></div><div class="chartbox"><canvas id="cFleet"></canvas></div><ul class="facts" id="facts"></ul><div id="ctl_robotaxi"></div></section>
-<section class="card" id="optimus"><h2>Optimus</h2><div class="key" id="k_optimus"></div><div id="optScen"></div><div class="chartbox"><canvas id="cOpt"></canvas></div>
+<section class="card panel" data-co="tesla" data-sub="cars" id="cars"><h2>Cars</h2><div class="key" id="k_cars"></div><div class="chartbox"><canvas id="cCars"></canvas></div><div id="ctl_cars"></div></section>
+<section class="card panel" data-co="tesla" data-sub="energy" id="energy"><h2>Energy</h2><div class="key" id="k_energy"></div><div class="chartbox"><canvas id="cEnergy"></canvas></div><div id="ctl_energy"></div></section>
+<section class="card panel" data-co="tesla" data-sub="robotaxi" id="robotaxi"><h2>Robotaxi</h2><div class="key" id="k_robotaxi"></div><div id="scen"></div><div class="chartbox"><canvas id="cFleet"></canvas></div><ul class="facts" id="facts"></ul><div id="ctl_robotaxi"></div></section>
+<section class="card panel" data-co="tesla" data-sub="optimus" id="optimus"><h2>Optimus</h2><div class="key" id="k_optimus"></div><div id="optScen"></div><div class="chartbox"><canvas id="cOpt"></canvas></div>
 <ul class="facts"><li>Production went from a few dozen a week (Q2 2026) to several hundred a week (Aug 2026); a &gt;1,000/week line is targeted by end-2026 (The Information via Electrek).</li><li>No price, orders or release date published; first robots are used inside Tesla. Musk targets public sales in late 2027.</li><li>Rivals: Unitree shipped ~5,500 humanoids in 2025 (G1 from US$13,500); Agility Digit, Figure 03 (BMW), Boston Dynamics Atlas (Hyundai).</li><li>Model: price starts at US$60k (assumption), falling each year; every Optimus number is an assumption.</li></ul><div id="ctl_optimus"></div></section>
-<section class="card" id="fsd"><h2>FSD (Full Self-Driving)</h2><div class="key" id="k_fsd"></div><div class="chartbox"><canvas id="cFsd"></canvas></div>
+<section class="card panel" data-co="tesla" data-sub="fsd" id="fsd"><h2>FSD (Full Self-Driving)</h2><div class="key" id="k_fsd"></div><div class="chartbox"><canvas id="cFsd"></canvas></div>
 <ul class="facts"><li>1.48m active paid FSD customers at 30 Jun 2026 (+56% in a year); ~55% bought upfront, ~45% subscribe.</li><li>Subscription-only since 14 Feb 2026: US$99/month. Approved in the US, Canada, Australia, NZ, parts of Europe; China launched May 2026.</li><li>Still "Supervised": the driver must watch the road. No licensing deal signed with any carmaker.</li>
 <li><b>Avoiding double counting:</b> today's FSD revenue is already inside car revenue (and the car margin), so only subscribers <i>above</i> today's ~0.67m monthly subscribers count here. Upfront purchases stay in Cars. Robotaxi fares are valued only in the Robotaxi section, and Optimus has no overlap.</li></ul><div id="ctl_fsd"></div></section>
 
-<section class="card beyond" id="beyond"><h2>Beyond Tesla</h2><p>Two <b>separate companies</b> linked to the Teslaverse. They are <b>not</b> part of Tesla's value per share or build-up above; each has its own headline, sliders and checks.</p></section>
-<section class="card beyond" id="spacex"><h2>SpaceX + xAI</h2>
-<p class="gi">SpaceX bought xAI on 2 Feb 2026 (SpaceX US$1tn + xAI US$250bn = US$1.25tn), then listed on Nasdaq as SPCX on 12 Jun 2026 at US$135 (US$1.77tn). Because they are one listed company, we compare our sum of the parts with SPCX's market value (US$146.03 at 16 Oct 2026 close x 13.08bn IPO shares), not two private valuations.</p>
+
+<section class="card panel beyond" data-co="spacex" data-sub="overview"><h2>SpaceX (incl. xAI): Overview</h2>
+<p class="gi">A <b>separate company</b> from Tesla, not part of Tesla's value. SpaceX bought xAI on 2 Feb 2026 (SpaceX US$1tn + xAI US$250bn = US$1.25tn), then listed on Nasdaq as SPCX on 12 Jun 2026 at US$135 (US$1.77tn). Because they are one listed company, we compare our sum of the parts with SPCX's market value (US$146.03 at 16 Oct 2026 close x 13.08bn IPO shares).</p>
 <div id="sxHead" class="headline"></div><h3>Value by part</h3><div id="sxComp" class="comp"></div>
 <div class="chartbox"><canvas id="sxParts"></canvas></div><p class="note"><b>What this shows:</b> on these cautious settings the parts add up to a small fraction of what the market pays. The market is betting on much faster Starlink growth, a winning xAI and big Starship-era businesses.</p>
 <p id="sxWwit" class="note wwit"></p>
 <div class="chartbox"><canvas id="sxFcf"></canvas></div><p class="note"><b>What this shows:</b> Starlink already makes real cash; xAI loses money for years before (maybe) turning positive. Years are calendar 2027-2036.</p>
-<div class="chartbox"><canvas id="sxHist"></canvas></div><p class="note"><b>What this shows:</b> only two quarters are public since the IPO filing. Starlink went from 10.3m to 12.0m subscribers between March and June 2026. Q1 launch revenue is derived (total minus the other segments).</p>
-<ul class="facts"><li><b>Tesla links:</b> SpaceX bought about US$295m of Tesla Megapacks in Q2 2026 (US$329m in H1) to power AI data centres, recorded by Tesla as related-party revenue. Musk runs both companies, and xAI is a big buyer of Nvidia chips.</li><li>Net cash is not modelled here (IPO proceeds vs debt and heavy AI spending), so treat values as enterprise-level.</li></ul>
-<div id="ctl_spacex"></div></section>
-<section class="card beyond" id="nvidia"><h2>Nvidia</h2>
-<p class="gi">The world's main supplier of AI chips. <b>Why it matters to the Teslaverse:</b> Tesla trains FSD and Optimus AI on Nvidia hardware alongside its own chips, and xAI's Colossus data centres run on Nvidia GPUs. Base year = Q2 FY2027 (quarter to 26 Jul 2026) x 4.</p>
+<h3>History (only two public quarters, so it lives here)</h3><div class="chartbox"><canvas id="sxHist"></canvas></div><p class="note"><b>What this shows:</b> Starlink went from 10.3m to 12.0m subscribers between March and June 2026; AI revenue jumped as X and xAI were folded in. Q1 launch revenue is derived (total minus the other segments).</p>
+<ul class="facts"><li><b>Tesla links:</b> SpaceX bought about US$295m of Tesla Megapacks in Q2 2026 (US$329m in H1) to power AI data centres, recorded by Tesla as related-party revenue. Musk runs both companies, and xAI is a big buyer of Nvidia chips.</li><li>Net cash is not modelled here, so treat values as enterprise-level.</li></ul>
+<div id="sxc_overview"><h3>Shared settings</h3></div></section>
+<section class="card panel beyond" data-co="spacex" data-sub="starlink"><h2>Starlink</h2><p class="gi">Satellite internet: 12.0m subscribers paying ~US$66/month (Q2 2026); the only profitable segment in Q1 2026. Value = subscribers x ARPU x margin.</p><div class="key" id="sxK_starlink"></div><div id="sxc_starlink"><h3>Assumptions</h3></div></section>
+<section class="card panel beyond" data-co="spacex" data-sub="launch"><h2>Launch</h2><p class="gi">Falcon 9 / Dragon flights for outside customers (Space segment US$0.96bn in Q2 2026; 165 Falcon launches in 2025).</p><div class="key" id="sxK_launch"></div><div id="sxc_launch"><h3>Assumptions</h3></div></section>
+<section class="card panel beyond" data-co="spacex" data-sub="xai"><h2>xAI</h2><p class="gi">Grok chatbot, X (Twitter) and the Colossus data centres. AI revenue US$2.56bn in Q2 2026, but large losses. Three stories weighted by chance.</p><div class="key" id="sxK_xai"></div><div id="sxScen"></div><div id="sxc_xai"><h3>Assumptions</h3></div></section>
+<section class="card panel beyond" data-co="spacex" data-sub="starship"><h2>Starship / other</h2><p class="gi">Starship V3 completed two successful tests by July 2026; no Starship revenue yet. Valued as a simple option: chance x payoff.</p><div class="key" id="sxK_starship"></div><div id="sxc_starship"><h3>Assumptions</h3></div></section>
+<section class="card panel beyond" data-co="nvidia" data-sub="overview"><h2>Nvidia: Overview</h2>
+<p class="gi">A <b>separate company</b>: the world's main supplier of AI chips. <b>Why it matters to the Teslaverse:</b> Tesla trains FSD and Optimus AI on Nvidia hardware alongside its own chips, and xAI's Colossus data centres run on Nvidia GPUs. Base year = Q2 FY2027 (quarter to 26 Jul 2026) x 4.</p>
 <div id="nvHead" class="headline"></div><p id="nvWwit" class="note wwit"></p>
 <div class="chartbox"><canvas id="nvFcf"></canvas></div><p class="note"><b>What this shows:</b> projected free cash flow at the slider settings; with cautious 15% growth, cash flow roughly doubles in 5 years.</p>
-<div class="chartbox"><canvas id="nvHist"></canvas></div><p class="note"><b>What this shows:</b> data-centre sales have more than tripled in two years, while gross margin has stayed around 73-75%. From FY2027 Nvidia reports only Data Center and Edge Computing, so gaming is no longer shown separately. Missing margin points were not checked against filings.</p>
-<div id="ctl_nvidia"></div></section>
-
-<section class="card" id="trends"><h2>Trends: what actually happened</h2><p class="note">Real reported quarterly figures (Tesla quarterly updates), Q1 2023 to Q3 2026. Q3 2026 has deliveries and storage only.</p>
+<div id="nvc_overview"><h3>Shared settings</h3></div></section>
+<section class="card panel beyond" data-co="nvidia" data-sub="dc"><h2>Data Center</h2><p class="gi">AI chips and networking for hyperscalers and AI clouds: US$89.0bn in Q2 FY2027, 93% of revenue, +117% in a year.</p><div class="key" id="nvK_dc"></div><div id="nvc_dc"><h3>Assumptions</h3></div></section>
+<section class="card panel beyond" data-co="nvidia" data-sub="edge"><h2>Edge / other</h2><p class="gi">PCs, gaming, workstations, cars and robots ("Edge Computing"): US$7.2bn in Q2 FY2027.</p><div class="key" id="nvK_edge"></div><div id="nvc_edge"><h3>Assumptions</h3></div></section>
+<section class="card panel beyond" data-co="nvidia" data-sub="trends"><h2>Nvidia trends</h2><div class="chartbox"><canvas id="nvHist"></canvas></div><p class="note"><b>What this shows:</b> data-centre sales have more than tripled in two years, while gross margin has stayed around 73-75%. From FY2027 Nvidia reports only Data Center and Edge Computing. Missing margin points were not checked against filings.</p></section>
+<section class="card panel" data-co="tesla" data-sub="trends" id="trends"><h2>Trends: what actually happened</h2><p class="note">Real reported quarterly figures (Tesla quarterly updates), Q1 2023 to Q3 2026. Q3 2026 has deliveries and storage only.</p>
 <div class="hist"><div class="chartbox"><canvas id="hDel"></canvas></div><div class="chartbox"><canvas id="hGwh"></canvas></div>
 <div class="chartbox"><canvas id="hRev"></canvas></div><div class="chartbox"><canvas id="hGm"></canvas></div></div></section>
-<section class="card" id="sources"><h2>Sources</h2><ul class="src" id="srcList"></ul>
+<section class="card panel" data-co="sources" data-sub="overview" id="sources"><h2>Sources</h2><ul class="src" id="srcList"></ul>
 <p class="note">Base data: Teslaverse Valuation Model v4 (built 9 Oct 2026). FY2025 actuals; balance sheet 30 Jun 2026; share price 8 Oct 2026 close. Optimus, FSD growth and licensing figures not listed above are labelled assumptions. Educational model, not financial advice.</p><p id="check" class="note"></p><h3>Beyond Tesla sources</h3><ul class="src" id="srcBeyond"></ul><p id="checkBeyond" class="note"></p></section>
 </main>
-<script src="data.js"></script><script src="model.js"></script><script src="app.js"></script><script src="beyond.js"></script><script src="beyond-ui.js"></script></body></html>
+<script src="data.js"></script><script src="model.js"></script><script src="app.js"></script><script src="beyond.js"></script><script src="beyond-ui.js"></script><script src="nav.js"></script></body></html>

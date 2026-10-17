@@ -30,3 +30,7 @@ section[id]{scroll-margin-top:52px}.gi{color:var(--mu);font-size:.85rem;margin:0
 .src{font-size:.82rem;padding-left:18px}.src a{color:var(--b);word-break:break-all}.src li{margin:4px 0}
 .beyond{border-color:#76b90055}.beyond h2::before{content:"Beyond Tesla · ";color:var(--mu);font-weight:400}#beyond h2::before{content:""}.tabs a.sep{color:var(--mu);font-weight:400}
 .beyond .num{font-size:1.6rem}.beyond .big>div{min-width:95px}
+.tabs.top{top:0;z-index:12;background:#010409;border-bottom:1px solid var(--line)}.tabs.top a{font-size:.95rem}.tabs.top a.srcl{margin-left:auto;color:var(--mu);font-weight:400;font-size:.85rem}
+.tabs.sub{top:45px;z-index:11;background:#0d1117ee}.tabs.sub a{font-size:.85rem;font-weight:500;padding:9px 12px;color:var(--mu)}
+.tabs a.on{color:var(--tx);box-shadow:inset 0 -3px 0 var(--ac)}.tabs.sub a.on{color:var(--tx)}
+.beyond h2::before{content:""}
