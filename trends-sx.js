@@ -14,6 +14,7 @@ const TR={
  launches:[[98,138,170],[38,46,40,38]], falcon:[[96,134,165],[36,null,40,null]], custL:[[33,45,43],[12,9,7,10]],
  ls:[[1.964,2.584,2.576],[0.566,0.490,0.330,0.648]], ld:[[1.593,1.212,1.510],[0.299,0.256,0.289,0.314]],
  spaceOp:[[-0.001,0.021,-0.657],[-0.070,-0.369,-0.662,-0.542]],
+ ship:{o:"FFPSSSFFPSSPSS", rd:[[1.538,1.835,3.004],[0.526,0.693,0.930,1.076]], capex:[[1.497,2.032,3.832],[0.759,0.946,1.052,1.174]]},
  px:{d:["11 Jun (IPO price)","31 Jul","31 Aug","30 Sep","16 Oct"],v:[135,108.37,143.69,150.86,146.03]}
 };
 (function(){
@@ -35,4 +36,7 @@ mk("tSlRev","Connectivity revenue (US$bn) and operating margin",[b("Consumer","#
 // Launch
 mk("tLnCount","Launches (number)",[b("Customer launches","#f0883e",j(TR.custL),{stack:"l"}),b("Internal (mostly Starlink) and Starship","#8b949e",j(TR.launches).map((v,i)=>v-j(TR.custL)[i]),{stack:"l"})],{stack:true});
 mk("tLnRev","Space segment revenue (US$bn) and operating profit",[b("Launch services","#8b949e",j(TR.ls),{stack:"r"}),b("Launch & development (NASA, DoW contracts)","#6e7681",j(TR.ld),{stack:"r"}),ln("Operating profit/loss (US$bn, right axis)","#f85149",j(TR.spaceOp),{yAxisID:"y2"})],{stack:true,scales:{y2:{position:"right",grid:{display:false}}}});
+{const o=TR.ship.o.split(""),lab=o.map((_,i)=>"F"+(i+1)+(i<6?" V1":i<11?" V2":" V3")); let s=0,h=0; const rate=[],rateH=[],cum=[]; o.forEach((x,i)=>{if(x==="S"){s++;h++;} if(x==="P")h+=0.5; cum.push(i+1); rate.push(+(100*s/(i+1)).toFixed(0)); rateH.push(+(100*h/(i+1)).toFixed(0));});
+ mk("tShFl","Starship test flights: cumulative count and success rate",[b("Cumulative flights","#484f58",cum),ln("Success rate % (successes only)","#3fb950",rate,{yAxisID:"y2"}),ln("Success rate % (partials count half)","#f0883e",rateH,{yAxisID:"y2",borderDash:[5,4]})],{labels:lab,nosep:true,scales:{y2:{position:"right",min:0,max:100,grid:{display:false}}}});}
+mk("tShRd","Space segment R&D (mostly Starship) and capex, US$bn",[b("Space R&D","#f0883e",j(TR.ship.rd)),b("Space capex","#8b949e",j(TR.ship.capex))]);
 })();

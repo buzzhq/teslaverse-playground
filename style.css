@@ -36,3 +36,6 @@ section[id]{scroll-margin-top:52px}.gi{color:var(--mu);font-size:.85rem;margin:0
 .beyond h2::before{content:""}
 
 .takeaways{background:rgba(210,168,255,.08);border-left:3px solid #d2a8ff;border-radius:8px;padding:6px 12px;margin:8px 0 12px}.takeaways ul{padding-left:18px;margin:4px 0}.takeaways li{margin:4px 0;font-size:.9rem}p.src{color:var(--mu);padding-left:0}
+.xline{border-top:1px solid #30363d;margin-top:14px;padding-top:6px}.xline h3{color:#d2a8ff}
+.tblwrap{overflow-x:auto}table.fl{font-size:.78rem}table.fl td,table.fl th{padding:3px 5px}.oS{color:#3fb950}.oP{color:#f0883e}.oF{color:#f85149}
+.fl2 table{font-size:.78rem}.fl2 td,.fl2 th{padding:3px 4px}

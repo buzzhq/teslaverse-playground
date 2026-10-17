@@ -8,8 +8,22 @@ const BD = {
   subs: 12.0, arpu: 66, connRevAnn: 4.291*4, launchRevAnn: 0.962*4, aiRevAnn: 2.561*4,
   hist: { q: ["Q1 2026","Q2 2026"], conn: [3.257,4.291], launch: [0.619,0.962], ai: [0.818,2.561], subs: [10.3,12.0] },
   starter: { sxDisc:0.10, sxTg:0.03, subG1:0.20, subG2:0.08, arpuChg:-0.03, connM:0.25, launchG:0.06, launchM:0.15,
-             aiBear:45, aiBase:40, aiBull:15, aiRevBase:60, aiMBase:0.15, shipP:15, shipVal:300 },
-  ai: { bear:{rev10:20, m1:-1.0, m10:0.05}, base:{m1:-1.0}, bull:{rev10:200, m1:-0.8, m10:0.25} }
+             shipP:15, shipVal:300,
+             // xAI business lines: r = starting revenue (US$bn/yr, Q2 2026 x4 split), g1 = growth yrs 1-5, g2 = growth yrs 6-10, m = cash margin by year 10, p = probability (%)
+             subs_r:1.32, subs_g1:0.25, subs_g2:0.08, subs_m:0.25,
+             api_r:1.00, api_g1:0.30, api_g2:0.10, api_m:0.25,
+             agents_g1:0.60, agents_g2:0.25, agents_m:0.20, agents_p:25, agents_r1:0.5,
+             compute_r:6.40, compute_g1:0.20, compute_g2:0.03, compute_m:0.15,
+             ads_r:1.468, ads_g1:0.00, ads_g2:0.02, ads_m:0.15,
+             gov_r:0.056, gov_g1:0.40, gov_g2:0.10, gov_m:0.20,
+             orbital_p:5, orbital_r1:1, orbital_g:0.6, orbital_m:0.25,
+             shared_c:2.5 },
+  // Q2 2026 AI segment revenue (US$bn): Advertising 0.367 + AI solutions & infrastructure 2.194 (release). Compute ~1.6 disclosed (call);
+  // the other 0.594 is NOT split in filings - our assumed split: subscriptions 0.330, API/enterprise/data licensing 0.250, government 0.014, agents 0.
+  aiQ2: { total:2.561, ads:0.367, compute:1.6, subs:0.330, api:0.250, gov:0.014, agents:0 },
+  // Fixed starting margins (year 1) per line, ramping linearly to the year-10 slider. Assumptions.
+  m0: { subs:0, api:0, agents:-0.5, compute:0.10, ads:0.05, gov:0, orbital:-1 },
+  LINES: ["subs","api","agents","compute","ads","gov","orbital","shared"]
  },
  nv: { // Nvidia. US$bn unless stated. Base = latest quarter (Q2 FY2027, ended 26 Jul 2026) x 4.
   price: 214.13, priceDate: "16 Oct 2026 close", sharesM: 24285,
@@ -29,6 +43,17 @@ const BD = {
   ["Colossus 100k Hopper GPUs, doubling to 200k (Oct 2024)","Nvidia press release","https://investor.nvidia.com/news/press-release-details/2024/NVIDIA-Ethernet-Networking-Accelerates-Worlds-Largest-AI-Supercomputer-Built-by-xAI/default.aspx"],
   ["Colossus doubled to 200k GPUs in 92 days","xAI","https://x.ai/colossus"],
   ["SPCX month-end closes","stockanalysis.com (S&P Global MI)","https://stockanalysis.com/stocks/spcx/history/"],
+  ["xAI paid subscribers 4.9m (Dec 2025) and 6.3m (Mar 2026); Anthropic 325k GPUs at US$1.25bn/month to May 2029; AI solutions revenue = subscriptions, data licensing, API; orbital AI compute 'as early as 2028'","SpaceX 424(b)(4) prospectus","https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm"],
+  ["Q2 2026: ~US$1.6bn incremental AI infrastructure revenue from Cloud Services Agreements; US$14.1bn contracted; Google and Anthropic deals; Grok 4.5 token use tripled","SpaceX Q2 2026 call transcript","https://www.fool.com/earnings/call-transcripts/2026/08/11/spacex-spcx-q2-2026-earnings-call-transcript/"],
+  ["Pricing: X Subscription Plus US$8, Premium US$30, Super US$100, Ultra US$200","xAI","https://docs.x.ai/x-subscription/pricing"],
+  ["Pentagon CDAO frontier-AI awards, US$200m ceiling each incl. xAI (Jul 2025)","US DoD CDAO","https://www.ai.mil/Latest/News-Press/PR-View/Article/4242822/cdao-announces-partnerships-with-frontier-ai-companies-to-address-national-secu/"],
+  ["GSA OneGov: Grok for Government at US$0.42 per agency to Mar 2027","GSA","https://www.gsa.gov/about-gsa/newsroom/news-releases/gsa-xai-partner-to-accelerate-federal-ai-adoption-09252025"],
+  ["Starship Flight 12 (22 May 2026, first V3) and booster mishap","SpaceX / Reuters","https://www.spacex.com/launches/starship-flight-12/"],
+  ["Starship Flight 13 (24 Jul 2026)","SpaceX / Spaceflight Now","https://spaceflightnow.com/2026/07/25/super-heavy-starship-rocket-chalks-up-mostly-successful-test-flight/"],
+  ["Starship Flight 14 (28 Sep 2026): first orbit, 26 Starlink V3 deployed","SpaceX","https://www.spacex.com/launches/starship-flight-14/"],
+  ["Flight 15 preparation (B22/S42)","NASASpaceflight","https://www.nasaspaceflight.com/2026/09/starship-14-orbit-flight-15/"],
+  ["Artemis III 2027 LEO docking test; propellant-transfer demo slips (NASA OIG, GAO)","Reuters / NASA / Space Atlas","https://www.reuters.com/business/media-telecom/next-artemis-mission-track-2027-anything-can-happen-astronaut-says-2026-10-05/"],
+  ["Propellant transfer demo slipped Mar 2025 -> Mar 2026 -> 2026","Astronomy","https://www.astronomy.com/space-exploration/why-we-need-in-orbit-refueling-to-return-to-the-moon/"],
   ["SpaceX IPO (June 2026): 638.9m Class A shares at US$135 incl. full over-allotment; net proceeds US$85,675m","SpaceX Q2 2026 10-Q, Note 1","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/R10.htm"],
   ["Balance sheet 30 Jun 2026: cash 93,522 + marketable securities 6,487 - debt & finance leases 39,364 (US$m) = net cash ~US$60.6bn","SpaceX Q2 2026 10-Q","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/R2.htm"],
   ["Shares outstanding: 7,696.3m Class A + 5,485.5m Class B; ticker SPCX","SpaceX Q2 2026 10-Q cover","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/R1.htm"],
@@ -52,9 +77,13 @@ function sxModel(p){ const S=BD.sx, other=S.connRevAnn/(S.subs*S.arpu*12/1000);
  let subs=S.subs, arpu=S.arpu, lr=S.launchRevAnn; const star=[],lau=[],subsA=[];
  for(let t=1;t<=10;t++){ subs*=1+(t<=5?p.subG1:p.subG2); arpu*=1+p.arpuChg; lr*=1+p.launchG;
   subsA.push(subs); star.push(subs*arpu*12/1000*other*p.connM); lau.push(lr*p.launchM); }
- const sc=(s,rev10,m10)=>{const f=[];for(let t=1;t<=10;t++){const rev=S.aiRevAnn*Math.pow(rev10/S.aiRevAnn,t/10),m=s.m1+(m10-s.m1)*(t-1)/9;f.push(rev*m);}return {fcf:f,ev:pv(f,p.sxDisc)+tv(f[9],p.sxDisc,p.sxTg)};};
- const A=S.ai, bear=sc(A.bear,A.bear.rev10,A.bear.m10), base=sc(A.base,p.aiRevBase,p.aiMBase), bull=sc(A.bull,A.bull.rev10,A.bull.m10), w=[p.aiBear/100,p.aiBase/100,p.aiBull/100];
- const ai={ev:bear.ev*w[0]+base.ev*w[1]+bull.ev*w[2],fcf:bear.fcf.map((_,i)=>bear.fcf[i]*w[0]+base.fcf[i]*w[1]+bull.fcf[i]*w[2]),bear,base,bull};
+ const M0=S.m0, ln=(k,r0,g1,g2,m10,prob,startYr)=>{const f=[],rv=[];let x=r0;for(let t=1;t<=10;t++){ if(startYr&&t<startYr){rv.push(0);f.push(0);continue;} if(startYr&&t===startYr) x=r0; else x*=1+(t<=5?g1:g2); rv.push(x); f.push(x*(M0[k]+(m10-M0[k])*(t-1)/9)*prob);} return {fcf:f,rev:rv,ev:pv(f,p.sxDisc)+tv(f[9],p.sxDisc,p.sxTg)};};
+ const L={ subs:ln("subs",p.subs_r,p.subs_g1,p.subs_g2,p.subs_m,1), api:ln("api",p.api_r,p.api_g1,p.api_g2,p.api_m,1),
+  agents:ln("agents",p.agents_r1,p.agents_g1,p.agents_g2,p.agents_m,p.agents_p/100,2), compute:ln("compute",p.compute_r,p.compute_g1,p.compute_g2,p.compute_m,1),
+  ads:ln("ads",p.ads_r,p.ads_g1,p.ads_g2,p.ads_m,1), gov:ln("gov",p.gov_r,p.gov_g1,p.gov_g2,p.gov_m,1),
+  orbital:ln("orbital",p.orbital_r1,p.orbital_g,0.2,p.orbital_m,p.orbital_p/100,4) };
+ { const f=Array.from({length:10},()=>-p.shared_c); L.shared={fcf:f,rev:f.map(()=>0),ev:pv(f,p.sxDisc)+tv(f[9],p.sxDisc,p.sxTg)}; }
+ const ai={ev:S.LINES.reduce((s,k)=>s+L[k].ev,0), fcf:Array.from({length:10},(_,i)=>S.LINES.reduce((s,k)=>s+L[k].fcf[i],0)), lines:L};
  const parts={starlink:pv(star,p.sxDisc)+tv(star[9],p.sxDisc,p.sxTg), launch:pv(lau,p.sxDisc)+tv(lau[9],p.sxDisc,p.sxTg), xai:ai.ev, starship:p.shipP/100*p.shipVal};
  const ev=parts.starlink+parts.launch+parts.xai+parts.starship, total=ev+S.netCash, mcap=S.price*S.sharesBn;
  return {parts,ev,netCash:S.netCash,total,mcap,gap:total/mcap-1,perShare:total/S.sharesBn,star,lau,ai,subsA};
@@ -73,7 +102,10 @@ function checks(){ const out=[]; let ok=true;
  // 3) SpaceX: Starlink revenue rebuilt from subs x ARPU x mix factor equals Q2 annualised
  const S=BD.sx, other=S.connRevAnn/(S.subs*S.arpu*12/1000), e3=Math.abs(S.subs*S.arpu*12/1000*other-S.connRevAnn); if(e3>1e-9) ok=false; out.push(`Starlink base revenue rebuild ${S.connRevAnn.toFixed(2)}bn OK`);
  // 4) SpaceX parts add up and probabilities sum to 100
- const m=sxModel(S.starter), e4=Math.abs(m.parts.starlink+m.parts.launch+m.parts.xai+m.parts.starship+m.netCash-m.total); if(e4>1e-9||S.starter.aiBear+S.starter.aiBase+S.starter.aiBull!==100) ok=false; out.push("SpaceX parts + net cash sum to total; xAI probabilities = 100%");
+ const m=sxModel(S.starter), e4=Math.abs(m.parts.starlink+m.parts.launch+m.parts.xai+m.parts.starship+m.netCash-m.total); if(e4>1e-9) ok=false; out.push("SpaceX parts + net cash sum to total");
+ // 5) xAI lines add up to the xAI value, and the starting revenue split adds up to reported Q2 2026 AI revenue
+ const Q=S.aiQ2, e5=Math.abs(S.LINES.reduce((s,k)=>s+m.ai.lines[k].ev,0)-m.parts.xai), q2=Q.ads+Q.compute+Q.subs+Q.api+Q.gov+Q.agents, st=S.starter, e6=Math.abs(q2-Q.total)+Math.abs((st.subs_r+st.api_r+st.compute_r+st.ads_r+st.gov_r)/4-Q.total);
+ if(e5>1e-9||e6>0.0005) ok=false; out.push(`xAI lines sum to xAI value (${m.parts.xai.toFixed(1)}bn); line revenue split = Q2 2026 AI revenue ${q2.toFixed(3)}bn`);
  const msg=`[Beyond Tesla checks] ${ok?"PASS":"FAIL"} - `+out.join("; "); (ok?console.log:console.error)(msg); return {ok,msg};
 }
 window.TVBeyond={BD,sxModel,nvModel,checks};
