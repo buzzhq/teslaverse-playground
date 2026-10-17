@@ -28,3 +28,5 @@ section[id]{scroll-margin-top:52px}.gi{color:var(--mu);font-size:.85rem;margin:0
 .tabs{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tabs a{flex:0 0 auto;padding:12px 14px}
 .key{margin:4px 0 8px}.kv{font-size:1.6rem;font-weight:700;color:var(--tx)}a.cc{color:inherit;text-decoration:none}
 .src{font-size:.82rem;padding-left:18px}.src a{color:var(--b);word-break:break-all}.src li{margin:4px 0}
+.beyond{border-color:#76b90055}.beyond h2::before{content:"Beyond Tesla · ";color:var(--mu);font-weight:400}#beyond h2::before{content:""}.tabs a.sep{color:var(--mu);font-weight:400}
+.beyond .num{font-size:1.6rem}.beyond .big>div{min-width:95px}
