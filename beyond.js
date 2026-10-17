@@ -22,6 +22,13 @@ const BD = {
  },
  sources: [
   ["SpaceX acquired xAI (2 Feb 2026): SpaceX US$1tn + xAI US$250bn = US$1.25tn","Reuters","https://www.reuters.com/business/musks-spacex-merge-with-xai-combined-valuation-125-trillion-bloomberg-news-2026-02-02/"],
+  ["SpaceX trends 2023-2025 and Q1/Q2 2025 (segment revenue, operating profit, capex, subscribers, ARPU, launches, nameplate GW, MAU)","SpaceX 424(b)(4) prospectus, 12 Jun 2026","https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm"],
+  ["SpaceX Q2 2026 segment KPIs (launches, subscribers, ARPU, GW, ad revenue, capex)","SpaceX Q2 2026 earnings release (8-K Ex. 99.1)","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052515/earningsreleaseq22608042.htm"],
+  ["Segment details Q2 2026","SpaceX Q2 2026 10-Q, Segments note","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/R83.htm"],
+  ["Colossus live Jul 2024 with up to 100k H100s","DatacenterDynamics","https://www.datacenterdynamics.com/en/news/xais-memphis-supercluster-has-gone-live-with-up-to-100000-nvidia-h100-gpus/"],
+  ["Colossus 100k Hopper GPUs, doubling to 200k (Oct 2024)","Nvidia press release","https://investor.nvidia.com/news/press-release-details/2024/NVIDIA-Ethernet-Networking-Accelerates-Worlds-Largest-AI-Supercomputer-Built-by-xAI/default.aspx"],
+  ["Colossus doubled to 200k GPUs in 92 days","xAI","https://x.ai/colossus"],
+  ["SPCX month-end closes","stockanalysis.com (S&P Global MI)","https://stockanalysis.com/stocks/spcx/history/"],
   ["SpaceX IPO (June 2026): 638.9m Class A shares at US$135 incl. full over-allotment; net proceeds US$85,675m","SpaceX Q2 2026 10-Q, Note 1","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/R10.htm"],
   ["Balance sheet 30 Jun 2026: cash 93,522 + marketable securities 6,487 - debt & finance leases 39,364 (US$m) = net cash ~US$60.6bn","SpaceX Q2 2026 10-Q","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/R2.htm"],
   ["Shares outstanding: 7,696.3m Class A + 5,485.5m Class B; ticker SPCX","SpaceX Q2 2026 10-Q cover","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/R1.htm"],
