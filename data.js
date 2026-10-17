@@ -17,8 +17,19 @@ window.TV_DATA = {
     enG1: 0.12, enG2: 0.06, gwhP: -0.02, enM: 0.12,
     pBear: 45, pBase: 40, pBull: 15,
     fleetBear: 20000, fleetBase: 250000, fleetBull: 2000000,
-    mBear: 0.10, mBase: 0.20, mBull: 0.30
+    mBear: 0.10, mBase: 0.20, mBull: 0.30,
+    opBear: 50, opBase: 35, opBull: 15, opUnitsBase: 300000, opUnitsBull: 2000000, opMBase: 0.15, opMBull: 0.20,
+    fsdG1: 0.25, fsdG2: 0.10, fsdPrice: 99, fsdPriceChg: 0.0, fsdM: 0.60,
+    licP: 15, licCars: 2000000, licFee: 1500
   },
+  // Optimus fixed scenario drivers (all assumptions; Tesla has published no price, orders or unit counts)
+  optimus: {
+    bear: { units1: 1000, units10: 20000,  price1: 60000, priceChg: -0.05, m1: -0.50, m10: 0.05 },
+    base: { units1: 2000, price1: 60000, priceChg: -0.08, m1: -0.40 },
+    bull: { units1: 5000, price1: 60000, priceChg: -0.10, m1: -0.30 }
+  },
+  // FSD: Tesla reported 1.48m active paid FSD customers at 30 Jun 2026, ~45% on monthly subscription.
+  fsd: { paidCustomers: 1480000, subShare: 0.45, licStartYear: 3, licMargin: 0.70 },
   // Robotaxi fixed scenario drivers (Sheet Inputs rows 64-71)
   robotaxi: {
     bear: { fleet1: 500,  miles: 40000, fare: 1.5, fareChg: -0.03, share: 1.00, m1: -1.00 },
@@ -39,5 +50,21 @@ window.TV_DATA = {
   servRev:   [1837,2150,2166,2166,2288,2608,2790,2848,2638,3046,3475,3371,3745,4581,null],
   autoGM:    [0.2108,0.1923,0.1869,0.1885,0.1848,0.1847,0.2011,0.1661,0.1623,0.172,0.1705,0.2042,0.2108,0.1688,null],
   energyGM:  [0.1099,0.1842,0.2444,0.2184,0.2465,0.2455,0.3051,0.2522,0.2875,0.3033,0.3142,0.2862,0.3953,0.2039,null],
+  sources: [
+    ["FY2025 car, energy, cash, debt, shares, quarterly trends","Teslaverse Valuation Model v4 (Tesla quarterly updates, 10-K/10-Q)","https://ir.tesla.com/"],
+    ["Share price US$375.00 (8 Oct 2026 close)","Exa market data","https://exa.ai/library/markets/stock/TSLA"],
+    ["Robotaxi cities, paid miles, Cybercab capacity, active FSD subscriptions 1.48m (30 Jun 2026)","Tesla Q2 2026 Update (22 Jul 2026)","https://ir.tesla.com/_flysystem/s3/sec/000162828026049213/tsla-20260722-gen.pdf"],
+    ["~1.5m paid FSD customers (55% upfront, 45% subscription); >55% North America FSD attach; Optimus 'very complex' to scale","Tesla Q2 2026 earnings call transcript","https://www.fool.com/earnings/call-transcripts/2026/08/05/tesla-tsla-q2-2026-earnings-call-transcript/"],
+    ["FSD subscription-only from 14 Feb 2026 at US$99/month (last purchase price US$8,000)","The Verge","https://www.theverge.com/news/861705/tesla-fsd-stop-selling-standalone-subscription-only"],
+    ["FSD subscription markets (US, Canada, Australia, NZ, Netherlands, Belgium, Denmark etc.)","Tesla Support","https://www.tesla.com/support/full-self-driving-subscriptions"],
+    ["FSD in China (May 2026), ¥64,000 one-off","CNBC","https://www.cnbc.com/2026/05/21/tesla-full-self-driving-china-launch-fsd.html"],
+    ["No automaker has accepted an FSD licence (Musk, 22 Sep 2026)","NotATeslaKiller","https://notateslakiller.com/en/tesla-fsd-licensing-other-automakers-no-takers/"],
+    ["FSD-related deferred revenue ~US$3.87bn (30 Jun 2026)","Tesla Q2 2026 10-Q (via companiesmarketcap)","https://companiesmarketcap.com/tesla/sec-reports-10q/0001628280-26-049270/"],
+    ["Optimus: few dozen/week in Q2 2026, several hundred/week by Aug, >1,000/week line targeted by end-2026, ~20,000/week ambition; leasing plan; Musk's 2025 claims missed","Electrek (citing The Information)","https://electrek.co/2026/09/25/tesla-optimus-production-ramp-hands-ai-generalization-problems/"],
+    ["Optimus: no price, orders or release date; Fremont line designed for 1m/yr, Texas 10m/yr long-term","Pogwire (14 Oct 2026)","https://pogwire.com/tech/tesla-optimus-price-release-date"],
+    ["Optimus target price ~US$20-30k (Musk); analysts expect US$50-100k initially","WebProNews","https://www.webpronews.com/teslas-optimus-bet-from-factory-line-overhaul-to-2027-sales-target/"],
+    ["Competitors: Unitree ~5,500 humanoids shipped in 2025, G1 from US$13,500; Agility Digit, Figure 03 at BMW, Boston Dynamics Atlas","Pheonix Research / marketupdate.ai","https://www.pheonixresearch.com/semiconductors-electronics/robotics-intelligent-automation/article/walking-was-the-easy-part-why-the-humanoid-robot-market-is-now-a-cost-per-part-business/"],
+    ["Robotaxi fleet counts, Waymo 4,000+ cars","Robotaxi Report / AI Shift News","https://robotaxireport.com/data/how-many-robotaxis-are-on-the-road/"]
+  ],
   expected: { cars: 25.17, energy: 8.69, robotaxi: 6.78, cash: 9.66, total: 50.30 }
 };
