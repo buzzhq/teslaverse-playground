@@ -2,7 +2,9 @@
 (function(){
 const BD = {
  sx: { // SpaceX + xAI (merged 2 Feb 2026; IPO 12 Jun 2026, Nasdaq: SPCX). US$bn unless stated.
-  price: 146.03, priceDate: "16 Oct 2026 close", sharesBn: 13.08,
+  price: 146.03, priceDate: "16 Oct 2026 close", sharesBn: 13.182, // 7,696.3m Class A + 5,485.5m Class B (10-Q cover)
+  netCash: (93.522+6.487)-(2.525+36.839), // 30 Jun 2026 balance sheet: cash + marketable securities - debt & finance leases
+  ipoNet: 85.675,
   subs: 12.0, arpu: 66, connRevAnn: 4.291*4, launchRevAnn: 0.962*4, aiRevAnn: 2.561*4,
   hist: { q: ["Q1 2026","Q2 2026"], conn: [3.257,4.291], launch: [0.619,0.962], ai: [0.818,2.561], subs: [10.3,12.0] },
   starter: { sxDisc:0.10, sxTg:0.03, subG1:0.20, subG2:0.08, arpuChg:-0.03, connM:0.25, launchG:0.06, launchM:0.15,
@@ -20,7 +22,10 @@ const BD = {
  },
  sources: [
   ["SpaceX acquired xAI (2 Feb 2026): SpaceX US$1tn + xAI US$250bn = US$1.25tn","Reuters","https://www.reuters.com/business/musks-spacex-merge-with-xai-combined-valuation-125-trillion-bloomberg-news-2026-02-02/"],
-  ["SpaceX IPO priced 11 Jun 2026 at US$135, US$75bn raised, US$1.77tn on 13.08bn shares","Reuters","https://www.reuters.com/world/musks-spacex-prices-record-75-billion-ipo-135-share-2026-06-11/"],
+  ["SpaceX IPO (June 2026): 638.9m Class A shares at US$135 incl. full over-allotment; net proceeds US$85,675m","SpaceX Q2 2026 10-Q, Note 1","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/R10.htm"],
+  ["Balance sheet 30 Jun 2026: cash 93,522 + marketable securities 6,487 - debt & finance leases 39,364 (US$m) = net cash ~US$60.6bn","SpaceX Q2 2026 10-Q","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/R2.htm"],
+  ["Shares outstanding: 7,696.3m Class A + 5,485.5m Class B; ticker SPCX","SpaceX Q2 2026 10-Q cover","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/R1.htm"],
+  ["Legal name Space Exploration Technologies Corp.; xAI held via X.AI Holdings (which owns X)","SpaceX filing","https://www.sec.gov/Archives/edgar/data/1181412/000162828026043288/spaceexplorationtechnologi.htm"],
   ["SPCX close US$146.03 (16 Oct 2026); market cap ~US$1.92-1.98tn","Exa / StockAnalysis","https://stockanalysis.com/stocks/spcx/market-cap/"],
   ["SpaceX 2025 revenue US$18.7bn (Connectivity US$11.4bn); Q1 2026 revenue US$4.69bn, Connectivity US$3.26bn, AI US$0.82bn","SpaceX S-1","https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm"],
   ["Q2 2026: revenue US$7.81bn (Connectivity 4.29, Space 0.96, AI 2.56); Starlink 12.0m subs, ARPU US$66/mo; Megapack purchases from Tesla","SpaceX Q2 2026 results","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052515/earningsreleaseq22608042.htm"],
@@ -44,8 +49,8 @@ function sxModel(p){ const S=BD.sx, other=S.connRevAnn/(S.subs*S.arpu*12/1000);
  const A=S.ai, bear=sc(A.bear,A.bear.rev10,A.bear.m10), base=sc(A.base,p.aiRevBase,p.aiMBase), bull=sc(A.bull,A.bull.rev10,A.bull.m10), w=[p.aiBear/100,p.aiBase/100,p.aiBull/100];
  const ai={ev:bear.ev*w[0]+base.ev*w[1]+bull.ev*w[2],fcf:bear.fcf.map((_,i)=>bear.fcf[i]*w[0]+base.fcf[i]*w[1]+bull.fcf[i]*w[2]),bear,base,bull};
  const parts={starlink:pv(star,p.sxDisc)+tv(star[9],p.sxDisc,p.sxTg), launch:pv(lau,p.sxDisc)+tv(lau[9],p.sxDisc,p.sxTg), xai:ai.ev, starship:p.shipP/100*p.shipVal};
- const total=parts.starlink+parts.launch+parts.xai+parts.starship, mcap=S.price*S.sharesBn;
- return {parts,total,mcap,gap:total/mcap-1,perShare:total/S.sharesBn,star,lau,ai,subsA};
+ const ev=parts.starlink+parts.launch+parts.xai+parts.starship, total=ev+S.netCash, mcap=S.price*S.sharesBn;
+ return {parts,ev,netCash:S.netCash,total,mcap,gap:total/mcap-1,perShare:total/S.sharesBn,star,lau,ai,subsA};
 }
 function nvModel(p){ const N=BD.nv; let dc=N.dcAnn, ed=N.edgeAnn; const fcf=[],dcA=[],edA=[];
  for(let t=1;t<=10;t++){ dc*=1+(t<=5?p.dcG1:p.dcG2); ed*=1+p.edgeG; dcA.push(dc); edA.push(ed); fcf.push((dc+ed)*p.nvM); }
@@ -61,7 +66,7 @@ function checks(){ const out=[]; let ok=true;
  // 3) SpaceX: Starlink revenue rebuilt from subs x ARPU x mix factor equals Q2 annualised
  const S=BD.sx, other=S.connRevAnn/(S.subs*S.arpu*12/1000), e3=Math.abs(S.subs*S.arpu*12/1000*other-S.connRevAnn); if(e3>1e-9) ok=false; out.push(`Starlink base revenue rebuild ${S.connRevAnn.toFixed(2)}bn OK`);
  // 4) SpaceX parts add up and probabilities sum to 100
- const m=sxModel(S.starter), e4=Math.abs(m.parts.starlink+m.parts.launch+m.parts.xai+m.parts.starship-m.total); if(e4>1e-9||S.starter.aiBear+S.starter.aiBase+S.starter.aiBull!==100) ok=false; out.push("SpaceX parts sum to total; xAI probabilities = 100%");
+ const m=sxModel(S.starter), e4=Math.abs(m.parts.starlink+m.parts.launch+m.parts.xai+m.parts.starship+m.netCash-m.total); if(e4>1e-9||S.starter.aiBear+S.starter.aiBase+S.starter.aiBull!==100) ok=false; out.push("SpaceX parts + net cash sum to total; xAI probabilities = 100%");
  const msg=`[Beyond Tesla checks] ${ok?"PASS":"FAIL"} - `+out.join("; "); (ok?console.log:console.error)(msg); return {ok,msg};
 }
 window.TVBeyond={BD,sxModel,nvModel,checks};
