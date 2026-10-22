@@ -39,3 +39,4 @@ section[id]{scroll-margin-top:52px}.gi{color:var(--mu);font-size:.85rem;margin:0
 .xline{border-top:1px solid #30363d;margin-top:14px;padding-top:6px}.xline h3{color:#d2a8ff}
 .tblwrap{overflow-x:auto}table.fl{font-size:.78rem}table.fl td,table.fl th{padding:3px 5px}.oS{color:#3fb950}.oP{color:#f0883e}.oF{color:#f85149}
 .fl2 table{font-size:.78rem}.fl2 td,.fl2 th{padding:3px 4px}
+.lt td,.lt th{text-align:left;vertical-align:top}.lt td:nth-child(4){color:var(--mu)}

@@ -70,7 +70,7 @@ function selfCheck(){
   out.totalV4=out.core;
   for(const k of ["cars","energy","robotaxi","cash"]){ const d=Math.abs(out[k]-exp[k]); if(d>0.05) ok=false; rows.push(`${k}: ${out[k].toFixed(2)} vs ${exp[k].toFixed(2)}`); }
   if(Math.abs(out.core-exp.total)>0.05) ok=false; rows.push(`original four total: ${out.core.toFixed(2)} vs ${exp.total.toFixed(2)}`);
-  rows.push(`NEW total incl. Optimus ${out.optimus.toFixed(2)} + FSD ${out.fsd.toFixed(2)} = ${out.total.toFixed(2)}`);
+  if(exp.all!==undefined&&Math.abs(out.total-exp.all)>0.05) ok=false; rows.push(`total incl. Optimus ${out.optimus.toFixed(2)} + FSD ${out.fsd.toFixed(2)} = ${out.total.toFixed(2)} vs ${exp.all!==undefined?exp.all.toFixed(2):"-"}`);
   const msg=`[Teslaverse self-check] ${ok?"PASS":"FAIL"} (tolerance $0.05) - `+rows.join("; ");
   (ok?console.log:console.error)(msg); return {ok,msg};
 }
