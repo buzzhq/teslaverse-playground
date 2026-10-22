@@ -1,5 +1,6 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.6",date:"22 Oct 2026",title:"Learning features and Save my view",rows:[["Glossary + quiz","-","On Tesla, SpaceX, Nvidia overviews and the comparison tab","Plain-English terms and 2-3 quick questions with explanations."],["New top tab: My views","-","Save / name / load / delete / compare slider sets","Stored only in your browser (localStorage). No totals changed."]]},
  {v:"v6.5",date:"22 Oct 2026",title:"Tesla vs SpaceX comparison tab",rows:[["New top tab: Tesla vs SpaceX","-","Model vs market value, price/sales, cash vs debt, revenue, related-party links","Tesla revenue is 12 months to 30 Sep 2026 (US$103.6bn); SpaceX has no 12-month figure (Q3/Q4 2025 unreported), so Q2 2026 x4 (US$31.3bn) is used and labelled. No totals changed."]]},
  {v:"v6.4",date:"22 Oct 2026",title:"Starlink split into 4 businesses + Starship link",rows:[
   ["Starlink model","One revenue line","Consumer, aviation & maritime, government & Starshield, direct-to-cell","Consumer and Enterprise & Government are reported; the 3-way E&G split is NOT disclosed, so we use equal thirds (estimate). Each has its own growth slider and chart."],

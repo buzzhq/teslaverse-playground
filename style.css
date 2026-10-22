@@ -42,3 +42,6 @@ section[id]{scroll-margin-top:52px}.gi{color:var(--mu);font-size:.85rem;margin:0
 .lt td,.lt th{text-align:left;vertical-align:top}.lt td:nth-child(4){color:var(--mu)}
 #rvTbl table,#chgLog table,#betTbl table{min-width:620px}
 #cmpTbl table{min-width:560px}
+.learn{border-top:1px dashed var(--line);margin-top:16px}.gloss{display:grid;grid-template-columns:minmax(120px,200px) 1fr;gap:4px 12px;margin:4px 0;font-size:.88rem}.gloss dt{font-weight:600;color:var(--tx)}.gloss dd{margin:0;color:var(--mu)}@media(max-width:600px){.gloss{grid-template-columns:1fr}.gloss dd{margin-bottom:6px}}
+.qq{margin:6px 0}.qq p{margin:4px 0}button.right{border-color:#3fb950;background:rgba(63,185,80,.15)}button.wrong{border-color:#f85149;background:rgba(248,81,73,.15)}
+.vin{flex:1;min-width:200px;background:#0d1117;color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.95rem}#viewsList table,#viewsCmp table{min-width:560px}

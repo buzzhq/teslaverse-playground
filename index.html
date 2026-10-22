@@ -2,7 +2,7 @@
 <title>Teslaverse Playground</title><link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script></head><body>
 <header><h1>Teslaverse Playground</h1><p class="sub">Move the sliders, watch what Tesla might be worth. Educational only, <b>not financial advice</b>.</p></header>
-<nav class="tabs top" id="topbar"><a data-co="tesla" href="#tesla/overview">Tesla</a><a data-co="spacex" href="#spacex/overview">SpaceX (incl. xAI)</a><a data-co="nvidia" href="#nvidia/overview">Nvidia</a><a data-co="compare" href="#compare">Tesla vs SpaceX</a><a data-co="changes" href="#changes" class="srcl">What changed</a><a data-co="sources" href="#sources" class="srcl">Sources</a></nav>
+<nav class="tabs top" id="topbar"><a data-co="tesla" href="#tesla/overview">Tesla</a><a data-co="spacex" href="#spacex/overview">SpaceX (incl. xAI)</a><a data-co="nvidia" href="#nvidia/overview">Nvidia</a><a data-co="compare" href="#compare">Tesla vs SpaceX</a><a data-co="views" href="#views">My views</a><a data-co="changes" href="#changes" class="srcl">What changed</a><a data-co="sources" href="#sources" class="srcl">Sources</a></nav>
 <nav class="tabs sub" id="subbar"></nav>
 <main>
 <section class="card panel" data-co="tesla" data-sub="overview" id="overview"><h2>Overview</h2>
@@ -133,8 +133,13 @@
 <li><b>Shareholding:</b> Tesla holds SpaceX shares; it booked a US$142m mark-to-market loss on them in Q3 2026 (Q3 call).</li>
 <li><b>Possible merger:</b> Tesla is exploring a possible merger with SpaceX (Euronews/Yahoo Finance, 22 Oct 2026); management declined questions on it. Nothing is agreed.</li>
 <li><b>Shared leadership:</b> Musk is CEO of both, and the Roadster demo was credited to "Tesla and SpaceX teams" (Q3 call).</li></ul></div></section>
+<section class="card panel" data-co="views" data-sub="overview" id="views"><h2>Save my view</h2>
+<p class="gi">Saves <b>all</b> your Tesla and SpaceX slider settings under a name, so you can come back later or compare, e.g. "Robotaxi works" vs "Bear case". Stored only in this browser (localStorage); clearing browser data deletes them.</p>
+<div id="viewsBox"><div class="btns"><input id="viewName" maxlength="40" placeholder="Name this view, e.g. My base case" class="vin"><button id="viewSave">Save current sliders</button></div><p id="viewMsg" class="note"></p>
+<div class="tblwrap" id="viewsList"></div><h3>Compare saved views</h3><p class="note">Tick the views to compare. "Current sliders" is always shown first.</p>
+<div class="chartbox"><canvas id="viewsChart"></canvas></div><div class="tblwrap" id="viewsCmp"></div></div></section>
 <section class="card panel" data-co="changes" data-sub="overview" id="changes"><h2>What changed (version history)</h2><p class="gi">Every time we update numbers, we log the old value, the new value and why. Model totals are at the <b>starter (Cautious)</b> settings.</p><div id="chgLog"></div></section>
 <section class="card panel" data-co="sources" data-sub="overview" id="sources"><h2>Sources</h2><ul class="src" id="srcList"></ul>
 <p class="note">Base data: Teslaverse Valuation Model v4 (built 9 Oct 2026). FY2025 actuals for the forecast base; balance sheet 30 Sep 2026 (Q3 2026 update); share price 21 Oct 2026 close. Optimus, FSD growth and licensing figures not listed above are labelled assumptions. Educational model, not financial advice.</p><p id="check" class="note"></p><h3>Beyond Tesla sources</h3><ul class="src" id="srcBeyond"></ul><p id="checkBeyond" class="note"></p></section>
 </main>
-<script src="data.js"></script><script src="model.js"></script><script src="app.js"></script><script src="reverse.js"></script><script src="bets.js"></script><script src="beyond.js"></script><script src="beyond-ui.js"></script><script src="trends-sx.js"></script><script src="compare.js"></script><script src="changelog.js"></script><script src="nav.js"></script></body></html>
+<script src="data.js"></script><script src="model.js"></script><script src="app.js"></script><script src="reverse.js"></script><script src="bets.js"></script><script src="beyond.js"></script><script src="beyond-ui.js"></script><script src="trends-sx.js"></script><script src="compare.js"></script><script src="learn.js"></script><script src="changelog.js"></script><script src="nav.js"></script></body></html>
