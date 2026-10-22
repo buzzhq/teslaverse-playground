@@ -57,6 +57,9 @@ window.TV_DATA = {
   q3: { date:"21 Oct 2026", deliveries:486532, revenue:28046, autoRev:20560, energyRev:2881, servRev:4605, autoGM:0.1851, autoGMxCredits:0.181, energyGM:0.3311, servGM:0.159,
         gwh:13.7, fcf:1531, opCash:6263, capex:4732, cash:45447, debt:9523, netIncomeGAAP:787, epsNonGAAP:0.48, regCredits:113, fsdPaid:1.74, capexGuide2026:20000 },
   sources: [
+    ["BYD 2025: 4,602,436 NEVs sold, 2,256,714 BEVs","BYD 2025 annual report (HKEX) / Gasgoo","https://autonews.gasgoo.com/articles/ev/byd-wraps-up-2025-global-sales-46-million-overseas-market-becomes-new-growth-engine-2007831963937550337"],
+    ["BYD God's Eye driver assistance standard on most models, from under US$10,000","Reuters (10 Feb 2025)","https://www.reuters.com/business/autos-transportation/chinas-byd-sell-21-models-with-its-gods-eye-smart-driving-tech-2025-02-10/"],
+    ["Tesla exploring possible merger with SpaceX; Q3 profit down 43%; 2026 capex cut to ~US$20bn","Euronews via Yahoo Finance (22 Oct 2026)","https://finance.yahoo.com/markets/stocks/articles/teslas-profit-drops-explores-possible-055300634.html"],
     ["Q3 2026 results: revenue, segments, margins, storage, FCF, cash, debt, FSD 1.74m, diluted shares 3,541m","Tesla Q3 2026 Update (21 Oct 2026)","https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf"],
     ["Q3 2026 call: >75% NA FSD attach, ~50% subscription, energy GM 33.1% helped by tariff refunds/warranty true-ups, 2026 capex ~US$20bn, Optimus 20k/week in ~1 year, Robotaxi to Dallas next month","Tesla Q3 2026 earnings call transcript","https://www.fool.com/earnings/call-transcripts/2026/10/22/tesla-tsla-q3-2026-earnings-call-transcript/"],
     ["Share price US$386.47 (21 Oct 2026 close)","Yahoo Finance","https://finance.yahoo.com/quote/TSLA/history/"],
