@@ -1,5 +1,9 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.4",date:"22 Oct 2026",title:"Starlink split into 4 businesses + Starship link",rows:[
+  ["Starlink model","One revenue line","Consumer, aviation & maritime, government & Starshield, direct-to-cell","Consumer and Enterprise & Government are reported; the 3-way E&G split is NOT disclosed, so we use equal thirds (estimate). Each has its own growth slider and chart."],
+  ["Starship progress slider","-","0% starter (Starship tab)","Raises Starlink margin/growth and Launch margin/growth as Starship matures (assumed effect sizes). 0% keeps the starter value unchanged."],
+  ["SpaceX starter value","US$256bn (US$19.42/share)","US$256bn (US$19.42/share)","Unchanged by design: starter growth for each part equals the old single-line pace; self-check confirms 0.00% difference."]]},
  {v:"v6.3",date:"22 Oct 2026",title:"Tesla Bets panel",rows:[["New Tesla tab: Bets","-","If-it-works vs probability-weighted chart for Robotaxi, Optimus, FSD","Shows the risk discount behind each bet, plus a sourced competition/risk list (Waymo, BYD, humanoid rivals, licensing, merger talk). No totals changed."]]},
  {v:"v6.2",date:"22 Oct 2026",title:"Reverse 'What it takes' calculator",rows:[["New Tesla tab: What it takes","-","Target price slider (default US$386.47)","Solves, one lever at a time, the robotaxi/Optimus/car/energy/discount-rate setting needed to reach your target, plus an 'all together' row. No data changed; totals unchanged (US$60.43)."]]},
  {v:"v6.1",date:"22 Oct 2026",title:"Tesla Q3 2026 results added",rows:[
