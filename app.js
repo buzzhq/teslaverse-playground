@@ -125,8 +125,10 @@ function update(preset){
  keyOut("cars",ps.cars,ps.total,` · terminal value ${pct(r.c.tvShare)} of it`); keyOut("energy",ps.energy,ps.total,` · terminal value ${pct(r.e.tvShare)} of it`);
  keyOut("robotaxi",ps.robotaxi,ps.total); keyOut("optimus",ps.optimus,ps.total); keyOut("fsd",ps.fsd,ps.total,` · subscribers ${(r.f.s0/1e6).toFixed(2)}m today → ${(r.f.subs[9]/1e6).toFixed(2)}m in 2035`);
  scen.innerHTML=tbl([["Bear",r.r.bear,P.pBear],["Base",r.r.base,P.pBase],["Bull",r.r.bull,P.pBull]],sh);
+ (window.TVHooks||[]).forEach(f=>{try{f(P,r,preset)}catch(e){console.error(e)}});
  optScen.innerHTML=tbl([["Bear",r.o.bear,P.opBear],["Base",r.o.base,P.opBase],["Bull",r.o.bull,P.opBull]],sh);
 }
+window.TVApp={getP:()=>Object.assign({},P),setP:(o,preset)=>{P=Object.assign({},D.starter,o);update(preset);},update:()=>update(),usd,pct,int,COL,years};
 const chk=M.selfCheck(); document.getElementById("check").textContent=chk.msg;
 update("cautious");
 })();

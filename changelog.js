@@ -1,5 +1,6 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.2",date:"22 Oct 2026",title:"Reverse 'What it takes' calculator",rows:[["New Tesla tab: What it takes","-","Target price slider (default US$386.47)","Solves, one lever at a time, the robotaxi/Optimus/car/energy/discount-rate setting needed to reach your target, plus an 'all together' row. No data changed; totals unchanged (US$60.43)."]]},
  {v:"v6.1",date:"22 Oct 2026",title:"Tesla Q3 2026 results added",rows:[
   ["Tesla share price","US$375.00 (8 Oct close)","US$386.47 (21 Oct close)","Latest close before/at the Q3 results (Yahoo Finance). Fell ~3% after hours on 21 Oct."],
   ["Cash & investments","US$43,524m (30 Jun)","US$45,447m (30 Sep)","Q3 2026 Update balance sheet."],

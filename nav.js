@@ -1,5 +1,5 @@
 (function(){
-const SUBS={tesla:[["overview","Overview"],["cars","Cars"],["energy","Energy"],["robotaxi","Robotaxi"],["optimus","Optimus"],["fsd","FSD"],["trends","Trends"]],
+const SUBS={tesla:[["overview","Overview"],["cars","Cars"],["energy","Energy"],["robotaxi","Robotaxi"],["optimus","Optimus"],["fsd","FSD"],["whatittakes","What it takes"],["trends","Trends"]],
  spacex:[["overview","Overview"],["starlink","Starlink"],["launch","Launch"],["xai","xAI"],["starship","Starship/other"]],
  nvidia:[["overview","Overview"],["dc","Data Center"],["edge","Edge/other"],["trends","Trends"]], sources:[], changes:[]};
 const LEGACY={overview:"tesla/overview",cars:"tesla/cars",energy:"tesla/energy",robotaxi:"tesla/robotaxi",optimus:"tesla/optimus",fsd:"tesla/fsd",trends:"tesla/trends",spacex:"spacex/overview",nvidia:"nvidia/overview",beyond:"spacex/overview",assumptions:"tesla/overview"};
