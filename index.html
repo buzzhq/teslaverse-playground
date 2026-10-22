@@ -2,7 +2,7 @@
 <title>Teslaverse Playground</title><link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script></head><body>
 <header><h1>Teslaverse Playground</h1><p class="sub">Move the sliders, watch what Tesla might be worth. Educational only, <b>not financial advice</b>.</p></header>
-<nav class="tabs top" id="topbar"><a data-co="tesla" href="#tesla/overview">Tesla</a><a data-co="spacex" href="#spacex/overview">SpaceX (incl. xAI)</a><a data-co="nvidia" href="#nvidia/overview">Nvidia</a><a data-co="changes" href="#changes" class="srcl">What changed</a><a data-co="sources" href="#sources" class="srcl">Sources</a></nav>
+<nav class="tabs top" id="topbar"><a data-co="tesla" href="#tesla/overview">Tesla</a><a data-co="spacex" href="#spacex/overview">SpaceX (incl. xAI)</a><a data-co="nvidia" href="#nvidia/overview">Nvidia</a><a data-co="compare" href="#compare">Tesla vs SpaceX</a><a data-co="changes" href="#changes" class="srcl">What changed</a><a data-co="sources" href="#sources" class="srcl">Sources</a></nav>
 <nav class="tabs sub" id="subbar"></nav>
 <main>
 <section class="card panel" data-co="tesla" data-sub="overview" id="overview"><h2>Overview</h2>
@@ -121,8 +121,20 @@
 <div class="chartbox"><canvas id="hRev"></canvas></div><div class="chartbox"><canvas id="hGm"></canvas></div>
 <div class="chartbox"><canvas id="hFcf"></canvas></div><div class="chartbox"><canvas id="hFsd"></canvas></div></div>
 <p class="note"><b>What the last two show:</b> free cash flow swings a lot (negative in Q2 2026 when capex hit US$5.8bn) while cash stays around US$42-45bn. Paid FSD customers rose every quarter, from 1.04m to 1.74m. Before Q3 2025 these two series are left blank: we only took them from the latest 5-quarter tables and have not re-checked older reports, so gaps are deliberate, not zero.</p></section>
+<section class="card panel" data-co="compare" data-sub="overview" id="compare"><h2>Tesla vs SpaceX (incl. xAI), side by side</h2>
+<p class="gi">Two <b>separate</b> companies, both run by Elon Musk. Model values use whatever sliders you have set on the Tesla and SpaceX tabs. Reported numbers carry their dates; where a number is not available we say so rather than guess.</p>
+<div class="hist"><div class="chartbox"><canvas id="cmpVal"></canvas></div><div class="chartbox"><canvas id="cmpPs"></canvas></div><div class="chartbox"><canvas id="cmpCash"></canvas></div><div class="chartbox"><canvas id="cmpRev"></canvas></div></div>
+<p class="note"><b>What these show:</b> both share prices sit far above our cautious models, i.e. investors are paying for future bets (robotaxi/Optimus at Tesla, Starlink growth/xAI/Starship at SpaceX). SpaceX costs far more per $1 of revenue than Tesla. SpaceX holds more cash (IPO money) but also more debt.</p>
+<div class="tblwrap" id="cmpTbl"></div>
+<h3>How the two are linked (related-party ties)</h3><div class="takeaways"><ul>
+<li><b>Megapacks:</b> SpaceX bought about US$295m of Tesla Megapacks in Q2 2026 (US$329m in H1 2026) to power AI data centres; Tesla books this as related-party revenue (Tesla Q2 2026 10-Q). Q3 2026 figure: not yet checked (needs Tesla's Q3 10-Q).</li>
+<li><b>Grok in Teslas:</b> xAI's Grok assistant is built into Tesla vehicles; in Q3 2026 Tesla said Grok is available in Cybercab with Grok Bot and Connectors for email, calendar and files by voice (Tesla Q3 2026 Update).</li>
+<li><b>Chips:</b> Tesla and SpaceX are planning the "Terafab" chip plant in Austin together; Musk said they still have to work out who pays for what, "tens of billions" up to early 2028 (Q3 2026 call). Both are also big buyers of Nvidia GPUs (xAI's Colossus; Tesla's AI training compute).</li>
+<li><b>Shareholding:</b> Tesla holds SpaceX shares; it booked a US$142m mark-to-market loss on them in Q3 2026 (Q3 call).</li>
+<li><b>Possible merger:</b> Tesla is exploring a possible merger with SpaceX (Euronews/Yahoo Finance, 22 Oct 2026); management declined questions on it. Nothing is agreed.</li>
+<li><b>Shared leadership:</b> Musk is CEO of both, and the Roadster demo was credited to "Tesla and SpaceX teams" (Q3 call).</li></ul></div></section>
 <section class="card panel" data-co="changes" data-sub="overview" id="changes"><h2>What changed (version history)</h2><p class="gi">Every time we update numbers, we log the old value, the new value and why. Model totals are at the <b>starter (Cautious)</b> settings.</p><div id="chgLog"></div></section>
 <section class="card panel" data-co="sources" data-sub="overview" id="sources"><h2>Sources</h2><ul class="src" id="srcList"></ul>
 <p class="note">Base data: Teslaverse Valuation Model v4 (built 9 Oct 2026). FY2025 actuals for the forecast base; balance sheet 30 Sep 2026 (Q3 2026 update); share price 21 Oct 2026 close. Optimus, FSD growth and licensing figures not listed above are labelled assumptions. Educational model, not financial advice.</p><p id="check" class="note"></p><h3>Beyond Tesla sources</h3><ul class="src" id="srcBeyond"></ul><p id="checkBeyond" class="note"></p></section>
 </main>
-<script src="data.js"></script><script src="model.js"></script><script src="app.js"></script><script src="reverse.js"></script><script src="bets.js"></script><script src="beyond.js"></script><script src="beyond-ui.js"></script><script src="trends-sx.js"></script><script src="changelog.js"></script><script src="nav.js"></script></body></html>
+<script src="data.js"></script><script src="model.js"></script><script src="app.js"></script><script src="reverse.js"></script><script src="bets.js"></script><script src="beyond.js"></script><script src="beyond-ui.js"></script><script src="trends-sx.js"></script><script src="compare.js"></script><script src="changelog.js"></script><script src="nav.js"></script></body></html>

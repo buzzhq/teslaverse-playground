@@ -86,7 +86,7 @@ function nvNeed(){ let lo=-.1,hi=1; for(let i=0;i<50;i++){const m=(lo+hi)/2; nvM
 function sxNeed(){ const need=BD.sx.price*BD.sx.sharesBn, cur=sxModel(SP); const rest=cur.total-cur.parts.starship; return (need-rest)/(SP.shipP/100||1); }
 function upd(){
  [...SXS.map(s=>[s,SP]),...NVS.map(s=>[s,NP])].forEach(([s,P])=>{document.getElementById("r_"+s.k).value=P[s.k];document.getElementById("o_"+s.k).textContent=s.f(P[s.k]);});
- const s=sxModel(SP), n=nvModel(NP);
+ const s=sxModel(SP), n=nvModel(NP); (window.SXHooks||[]).forEach(f=>{try{f(s,SP)}catch(e){console.error(e)}});
  sxHead.innerHTML=`<div class="big"><div><span class="lbl">Model equity value (parts + net cash)</span><span class="num">${bn(s.total)}</span><span class="lbl">≈ ${usd(s.perShare)}/share</span></div><div><span class="lbl">Market value (SPCX)</span><span class="num muted">${bn(s.mcap)}</span><span class="lbl">${usd(BD.sx.price)} x 13.18bn shares</span></div><div><span class="lbl">Model vs market</span><span class="num accent">${(s.gap>=0?"+":"")+pct(s.gap)}</span></div></div>`;
  sxComp.innerHTML=[["Starlink",s.parts.starlink,"#58a6ff","Satellite internet: subscribers x ARPU x margin."],["Launch",s.parts.launch,"#8b949e","Rockets and Dragon flights for outside customers."],["xAI",s.parts.xai,"#d2a8ff","Seven business lines (subscriptions, API, agents, compute rental, X ads, government, orbital) minus shared training costs."],["Starship / other",s.parts.starship,"#f0883e","Chance x payoff for Starship-enabled businesses."],["Net cash",s.netCash,"#3fb950","Cash + investments minus debt at 30 Jun 2026 (after the IPO)."]].map(c=>`<div class="cc" style="border-left-color:${c[2]}"><div class="row"><b>${c[0]}</b><span><b>${bn(c[1])}</b> <span class="note">${pct(c[1]/s.total)}</span></span></div><div class="note">${c[3]}</div></div>`).join("");
  sxWwit.innerHTML=`What would it take? To match the ${bn(s.mcap)} market value with everything else as set, the Starship / other payoff would need to be worth about <b>${bn(sxNeed())}</b> at a ${SP.shipP}% chance, or Starlink and xAI would need far bigger growth and margins.`;
@@ -111,5 +111,6 @@ function upd(){
  document.getElementById("nvK_dc").innerHTML=`<span class="kv">${usd(dcV/sh)}</span><span class="note"> per share · ${pct(dcV/n.ev)} of business value · ${bn(n.dcA[9])} revenue in year 10</span>`;
  document.getElementById("nvK_edge").innerHTML=`<span class="kv">${usd(edV/sh)}</span><span class="note"> per share · ${pct(edV/n.ev)} of business value · ${bn(n.edA[9])} revenue in year 10</span>`;
 }
+window.TVBeyondUI={getSP:()=>Object.assign({},SP),setSP:o=>{SP=Object.assign({},BD.sx.starter,o);upd();},upd:()=>upd()};
 upd(); document.getElementById("checkBeyond").textContent=checks().msg;
 })();
