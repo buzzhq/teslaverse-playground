@@ -1,5 +1,12 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.7",date:"29 Oct 2026",title:"CoWoS capacity cap + TSMC scale visual on Data Center",rows:[
+  ["Nvidia DC revenue","Unconstrained growth path","min(demand, CoWoS × Nvidia share × US$/wafer) each year","Public CoWoS estimates (TrendForce) as a hard packaging ceiling on AI chip sales."],
+  ["New DC sliders","-","CoWoS capacity today, capacity growth, Nvidia CoWoS share, revenue per wafer","Starters: 90k wpm, +12%/yr, 60% share, US$0.55bn per thousand wpm (so today's capacity ≈ US$356bn DC)."],
+  ["TSMC visual (DC tab)","-","2022–2026 chart of CoWoS, capex and advanced-node mix + bottleneck chips","Mobile-first; short captions; collapsible narrative underneath."],
+  ["Demand vs capacity chart","-","Uncapped demand, CoWoS ceiling, delivered DC","Shows when the packaging cap binds."],
+  ["Nvidia starter value","US$163.73/share","US$160.68/share","Lower when the CoWoS cap binds at starter 15% DC growth vs 12% capacity growth."],
+  ["Self-checks","Gordon only","+ delivered ≤ capacity; starter value printed","Gordon check uses high CoWoS growth so the formula still holds."]]},
  {v:"v6.6",date:"22 Oct 2026",title:"Learning features and Save my view",rows:[["Glossary + quiz","-","On Tesla, SpaceX, Nvidia overviews and the comparison tab","Plain-English terms and 2-3 quick questions with explanations."],["New top tab: My views","-","Save / name / load / delete / compare slider sets","Stored only in your browser (localStorage). No totals changed."]]},
  {v:"v6.5",date:"22 Oct 2026",title:"Tesla vs SpaceX comparison tab",rows:[["New top tab: Tesla vs SpaceX","-","Model vs market value, price/sales, cash vs debt, revenue, related-party links","Tesla revenue is 12 months to 30 Sep 2026 (US$103.6bn); SpaceX has no 12-month figure (Q3/Q4 2025 unreported), so Q2 2026 x4 (US$31.3bn) is used and labelled. No totals changed."]]},
  {v:"v6.4",date:"22 Oct 2026",title:"Starlink split into 4 businesses + Starship link",rows:[

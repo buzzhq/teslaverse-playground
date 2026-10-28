@@ -84,7 +84,38 @@
 <div id="nvHead" class="headline"></div><p id="nvWwit" class="note wwit"></p>
 <div class="chartbox"><canvas id="nvFcf"></canvas></div><p class="note"><b>What this shows:</b> projected free cash flow at the slider settings; with cautious 15% growth, cash flow roughly doubles in 5 years.</p>
 <div id="nvc_overview"><h3>Shared settings</h3></div></section>
-<section class="card panel beyond" data-co="nvidia" data-sub="dc"><h2>Data Center</h2><p class="gi">AI chips and networking for hyperscalers and AI clouds: US$89.0bn in Q2 FY2027, 93% of revenue, +117% in a year.</p><div class="key" id="nvK_dc"></div><div id="nvc_dc"><h3>Assumptions</h3></div></section>
+<section class="card panel beyond" data-co="nvidia" data-sub="dc"><h2>Data Center</h2><p class="gi">AI chips and networking for hyperscalers and AI clouds: US$89.0bn in Q2 FY2027, 93% of revenue, +117% in a year.</p><div class="key" id="nvK_dc"></div>
+
+<div class="tsmc-visual" id="tsmcVisual">
+ <h3 class="tv-title">How TSMC scaled — and what still bottlenecks Nvidia</h3>
+ <p class="tv-cap">CoWoS packaging capacity nearly 9× from 2022→2026 (est.), while TSMC capex swung from a dip to a new high. AI demand still outruns packaging.</p>
+ <div class="chartbox tv-chart"><canvas id="tsmcScale"></canvas></div>
+ <div class="tv-bn" aria-label="Bottleneck markers">
+  <span class="bn" title="ASML EUV lead times stretched tool deliveries for advanced nodes"><b>EUV tools</b><i>long lead times</i></span>
+  <span class="bn" title="New advanced-packaging fabs need cleanroom space; AP8/Chiayi ramping"><b>Cleanrooms</b><i>fab space</i></span>
+  <span class="bn" title="HBM memory supply (SK Hynix, Samsung, Micron) co-limits GPU shipments"><b>HBM</b><i>memory supply</i></span>
+  <span class="bn on" title="CoWoS is the binding packaging constraint for AI GPUs"><b>CoWoS</b><i>packaging</i></span>
+  <span class="bn" title="Apple and other big customers compete for advanced-node and packaging slots"><b>Apple &amp; others</b><i>compete for slots</i></span>
+ </div>
+ <ul class="tv-bullets">
+  <li><b>2022–24:</b> CoWoS ~10k→35k wpm (est.); capex dipped to ~US$30bn while AI demand exploded.</li>
+  <li><b>2025–26:</b> CoWoS ~70k→90k wpm (est.); capex US$41bn then guided US$52–56bn+; advanced nodes ~75%+ of wafer revenue.</li>
+  <li><b>Nvidia link:</b> model caps DC revenue at CoWoS × Nvidia share × revenue/wafer — raise demand growth to see the ceiling bind.</li>
+ </ul>
+ <p class="src tv-src">CoWoS = TrendForce/Commercial Times estimates (not TSMC official). Capex 2024–25 from TSMC management reports; 2026 mid of initial guide (later raised). Adv % ≈ 7nm+ wafer-revenue mix.</p>
+</div>
+
+<details class="narr">
+ <summary>Short story: how TSMC grew — and why Nvidia still waits ▾</summary>
+ <p>TSMC does not publish CoWoS wafer counts. Supply-chain trackers (TrendForce, Commercial Times) put monthly CoWoS capacity near ~10–15k in 2022–23, ~35k in 2024, ~70k by end-2025 and ~90k by end-2026 — a near-tripling from 2024 and ~50%+ CAGR from 2022. Capex fell after the 2022 peak (US$~36bn) to ~US$30bn in 2023–24, then jumped to US$40.9bn in 2025; 2026 was guided at US$52–56bn and later raised toward US$60–64bn, mostly for 2nm/3nm and advanced packaging.</p>
+ <p>Even so, bottlenecks remain: EUV tool lead times, cleanroom buildout, HBM memory (not made by TSMC), CoWoS itself, and competition from Apple and other big customers for scarce advanced-node and packaging slots. Nvidia is TSMC’s largest customer (~22% of TSMC revenue) and takes a large share of CoWoS. This model therefore caps data-centre revenue each year at <code>min(demand, CoWoS × Nvidia share × revenue per wafer)</code>.</p>
+</details>
+
+<h3>Demand vs CoWoS capacity (model)</h3>
+<div class="chartbox"><canvas id="nvCap"></canvas></div>
+<p class="note" id="nvCapNote"></p>
+
+<div id="nvc_dc"><h3>Assumptions</h3></div></section>
 <section class="card panel beyond" data-co="nvidia" data-sub="edge"><h2>Edge / other</h2><p class="gi">PCs, gaming, workstations, cars and robots ("Edge Computing"): US$7.2bn in Q2 FY2027.</p><div class="key" id="nvK_edge"></div><div id="nvc_edge"><h3>Assumptions</h3></div></section>
 <section class="card panel beyond" data-co="nvidia" data-sub="trends"><h2>Nvidia trends</h2><div class="chartbox"><canvas id="nvHist"></canvas></div><p class="note"><b>What this shows:</b> data-centre sales have more than tripled in two years, while gross margin has stayed around 73-75%. From FY2027 Nvidia reports only Data Center and Edge Computing. Missing margin points were not checked against filings.</p></section>
 <section class="card panel" data-co="tesla" data-sub="bets" id="bets"><h2>Tesla's big bets: if it works vs. what it is worth today</h2>

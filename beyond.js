@@ -40,7 +40,19 @@ const BD = {
   hist: { q:["Q2 FY25","Q3 FY25","Q4 FY25","Q1 FY26","Q2 FY26","Q3 FY26","Q4 FY26","Q1 FY27","Q2 FY27"],
    total:[30.040,35.082,39.331,44.062,46.743,57.006,68.127,81.615,96.221], dc:[26.272,30.771,35.580,39.112,41.096,51.215,62.314,75.246,89.023],
    gm:[null,0.746,0.730,null,0.724,0.734,0.750,0.749,0.750] },
-  starter: { nvDisc:0.10, nvTg:0.03, dcG1:0.15, dcG2:0.05, edgeG:0.08, nvM:0.40 }
+  // CoWoS capacity cap on DC revenue. cowos0 = '000 wafers/month (est.); capacity-implied
+  // Nvidia DC US$bn/yr ≈ cowosKwpm × 12 × nvCowosShare × revPerCowos. revPerCowos chosen so
+  // starter capacity ≈ today's annualised DC (US$356bn): 90×12×0.60×0.55 ≈ 356.
+  starter: { nvDisc:0.10, nvTg:0.03, dcG1:0.15, dcG2:0.05, edgeG:0.08, nvM:0.40,
+             cowos0:90, cowosG:0.12, nvCowosShare:0.60, revPerCowos:0.55 },
+  // Historical TSMC scale (for DC-tab visual). CoWoS kwpm = TrendForce / Commercial Times estimates (not official).
+  // Capex US$bn: 2024-25 official management reports; 2022-23 approx from NT$ / FX; 2026 mid of initial US$52-56bn guide (later raised).
+  // Adv node = 7nm-and-below share of wafer revenue (TSMC tech mix, approx).
+  tsmc: { y:[2022,2023,2024,2025,2026],
+    cowos:[10,15,35,70,90], // '000 wpm, estimates
+    capex:[36.3,30.5,29.8,40.9,54],
+    advPct:[53,58,67,74,78],
+    note:"CoWoS: TrendForce/Commercial Times estimates (not TSMC official). Capex 2024 US$29.8bn, 2025 US$40.9bn (mgmt reports); 2026 mid of US$52-56bn guide (later raised toward US$60-64bn). Adv %: 7nm+ wafer-revenue mix (approx from TSMC)."}
  },
  sources: [
   ["Starlink V3: 1 Tbps downlink per satellite; each Starship V3 launch adds 60 Tbps, >20x a Falcon 9 V2 Mini launch","SpaceX Starlink 2024 Progress Report (via Yahoo Tech)","https://tech.yahoo.com/science/articles/spacex-teases-1tbps-download-bandwidth-151511339.html"],
@@ -80,7 +92,11 @@ const BD = {
   ["Nvidia balance sheet 26 Jul 2026 (cash 22.4, debt securities 34.1, equity securities 42.8, debt 33.4 US$bn); 24,285m diluted shares","Nvidia 10-Q / press release","https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm"],
   ["Nvidia quarterly revenue history and margins (FY25-FY26)","Nvidia releases","https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2026"],
   ["NVDA close US$214.13 (16 Oct 2026)","Nvidia IR","https://investor.nvidia.com/stock-info/stock-quote-and-chart/default.aspx"],
-  ["FY2028 revenue growth ~70% preliminary expectation; margins to bottom at 71-72% (memory costs)","Nvidia Q2 FY2027 call","https://exa.ai/library/markets/stocks/NVDA/earnings/FY2027/Q2/transcript"]
+  ["TSMC CoWoS monthly capacity estimates: ~35k (2024), ~70k (end-2025), ~90k (end-2026); ~50% CAGR 2022-2026 (not official)","TrendForce / Commercial Times","https://www.trendforce.com/news/2024/12/13/news-tsmc-ramps-up-cowos-capacity-across-taiwan-projected-to-nearly-triple-by-2026/"],
+  ["Later 2026 CoWoS estimates raised toward 120-140k wpm TSMC; industry ~200k with OSAT partners","TrendForce / Economic Daily","https://www.trendforce.com/news/2026/06/15/news-tsmc-cowos-supply-demand-gap-reportedly-seen-narrowing-from-20-to-10-by-end-2026-as-capacity-expands/"],
+  ["TSMC capex: 2024 US$29.76bn, 2025 US$40.90bn (management reports); 2026 guide initially US$52-56bn, later raised toward US$60-64bn","TSMC 4Q24/4Q25 management reports; 20-F","https://investor.tsmc.com/"],
+  ["Nvidia ~22% of TSMC revenue (largest customer); CoWoS share of advanced packaging often estimated ~40-60% for Nvidia (not official)","CNBC / supply-chain estimates","https://www.cnbc.com/"],
+["FY2028 revenue growth ~70% preliminary expectation; margins to bottom at 71-72% (memory costs)","Nvidia Q2 FY2027 call","https://exa.ai/library/markets/stocks/NVDA/earnings/FY2027/Q2/transcript"]
  ]
 };
 const pv=(arr,r)=>arr.reduce((s,f,i)=>s+f/Math.pow(1+r,i+1),0), tv=(f,r,g)=>f*(1+g)/(r-g)/Math.pow(1+r,10);
@@ -105,15 +121,27 @@ function sxModel(p){ const S=BD.sx, other=S.connRevAnn/(S.subs*S.arpu*12/1000);
  const ev=parts.starlink+parts.launch+parts.xai+parts.starship, total=ev+S.netCash, mcap=S.price*S.sharesBn;
  return {parts,ev,netCash:S.netCash,total,mcap,gap:total/mcap-1,perShare:total/S.sharesBn,star,lau,ai,subsA,segRev,segV,segF};
 }
-function nvModel(p){ const N=BD.nv; let dc=N.dcAnn, ed=N.edgeAnn; const fcf=[],dcA=[],edA=[];
- for(let t=1;t<=10;t++){ dc*=1+(t<=5?p.dcG1:p.dcG2); ed*=1+p.edgeG; dcA.push(dc); edA.push(ed); fcf.push((dc+ed)*p.nvM); }
+function nvModel(p){ const N=BD.nv; let dem=N.dcAnn, ed=N.edgeAnn, cow=p.cowos0||90;
+ const share=p.nvCowosShare??0.60, rpw=p.revPerCowos??0.55, gC=p.cowosG??0.12;
+ const fcf=[],dcA=[],edA=[],demA=[],capA=[];
+ for(let t=1;t<=10;t++){
+  cow*=1+gC; // capacity available during the year after this year's buildout
+  dem*=1+(t<=5?p.dcG1:p.dcG2); ed*=1+p.edgeG;
+  const cap=cow*12*share*rpw, use=Math.min(dem,cap);
+  demA.push(dem); capA.push(cap); dcA.push(use); edA.push(ed); fcf.push((use+ed)*p.nvM);
+ }
  const ev=pv(fcf,p.nvDisc)+tv(fcf[9],p.nvDisc,p.nvTg), net=N.cash-N.debt, ps=(ev+net)*1000/N.sharesM;
- return {ev,net,ps,fcf,dcA,edA,tvShare:tv(fcf[9],p.nvDisc,p.nvTg)/ev};
+ const capped=demA.some((d,i)=>d>capA[i]+1e-9);
+ return {ev,net,ps,fcf,dcA,edA,demA,capA,capped,tvShare:tv(fcf[9],p.nvDisc,p.nvTg)/ev};
 }
 function checks(){ const out=[]; let ok=true;
  // 1) Nvidia: if every growth rate = terminal growth, DCF must equal the closed-form Gordon value.
- const N=BD.nv, q={nvDisc:.1,nvTg:.03,dcG1:.03,dcG2:.03,edgeG:.03,nvM:.4}, r=nvModel(q), gordon=(N.dcAnn+N.edgeAnn)*.4*1.03/(.1-.03);
+ const N=BD.nv, q={nvDisc:.1,nvTg:.03,dcG1:.03,dcG2:.03,edgeG:.03,nvM:.4,cowos0:500,cowosG:.5,nvCowosShare:.6,revPerCowos:.55}, r=nvModel(q), gordon=(N.dcAnn+N.edgeAnn)*.4*1.03/(.1-.03);
  const e1=Math.abs(r.ev/gordon-1); if(e1>1e-6) ok=false; out.push(`Nvidia DCF vs Gordon formula: ${(e1*100).toFixed(4)}% diff`);
+ // 1b) Capacity cap: delivered DC never exceeds capacity-implied; at starter, first years bind when demand growth > CoWoS growth.
+ { const st=nvModel(N.starter); const okCap=st.dcA.every((u,i)=>u<=st.capA[i]+1e-9); if(!okCap) ok=false;
+   out.push(`CoWoS cap: delivered ≤ capacity each year; starter capped=${st.capped}`);
+   out.push(`Nvidia starter US$${st.ps.toFixed(2)}/share`); }
  // 2) Nvidia base revenue = latest quarter x 4
  const e2=Math.abs(N.dcAnn+N.edgeAnn-96.221*4); if(e2>0.01) ok=false; out.push(`Nvidia base revenue ${(N.dcAnn+N.edgeAnn).toFixed(1)}bn = Q2 FY27 x4`);
  // 3) SpaceX: Starlink revenue rebuilt from subs x ARPU x mix factor equals Q2 annualised

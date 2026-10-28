@@ -45,3 +45,30 @@ section[id]{scroll-margin-top:52px}.gi{color:var(--mu);font-size:.85rem;margin:0
 .learn{border-top:1px dashed var(--line);margin-top:16px}.gloss{display:grid;grid-template-columns:minmax(120px,200px) 1fr;gap:4px 12px;margin:4px 0;font-size:.88rem}.gloss dt{font-weight:600;color:var(--tx)}.gloss dd{margin:0;color:var(--mu)}@media(max-width:600px){.gloss{grid-template-columns:1fr}.gloss dd{margin-bottom:6px}}
 .qq{margin:6px 0}.qq p{margin:4px 0}button.right{border-color:#3fb950;background:rgba(63,185,80,.15)}button.wrong{border-color:#f85149;background:rgba(248,81,73,.15)}
 .vin{flex:1;min-width:200px;background:#0d1117;color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.95rem}#viewsList table,#viewsCmp table{min-width:560px}
+
+/* TSMC scale visual (Data Center tab) — mobile-first */
+.tsmc-visual{background:#0d1117;border:1px solid #30363d;border-radius:12px;padding:12px;margin:10px 0 14px}
+.tv-title{margin:0 0 4px;font-size:1rem;color:#e6edf3}
+.tv-cap{margin:0 0 8px;font-size:.82rem;color:#8b949e;line-height:1.35}
+.tv-chart{height:240px;margin:4px 0 10px}
+@media(min-width:600px){.tv-chart{height:300px}}
+.tv-bn{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.tv-bn .bn{flex:1 1 calc(50% - 6px);min-width:120px;background:#161b22;border:1px solid #30363d;border-radius:8px;padding:6px 8px;font-size:.72rem;color:#8b949e;display:flex;flex-direction:column;gap:1px}
+.tv-bn .bn b{color:#e6edf3;font-size:.78rem}
+.tv-bn .bn i{font-style:normal;color:#8b949e}
+.tv-bn .bn.on{border-color:#f0883e;background:rgba(240,136,62,.12)}
+.tv-bn .bn.on b{color:#f0883e}
+.tv-bullets{margin:0 0 8px;padding-left:18px;font-size:.82rem;color:#e6edf3}
+.tv-bullets li{margin:4px 0}
+.tv-src{margin:0;font-size:.75rem}
+details.narr{background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:8px 12px;margin:8px 0 14px;font-size:.85rem;color:#8b949e}
+details.narr summary{cursor:pointer;color:#58a6ff;font-weight:600;list-style:none}
+details.narr summary::-webkit-details-marker{display:none}
+details.narr[open] summary{margin-bottom:6px}
+details.narr p{margin:6px 0;line-height:1.45}
+details.narr code{font-size:.78rem;color:#d2a8ff}
+@media(max-width:480px){
+ .tv-bn .bn{flex:1 1 100%}
+ .tv-title{font-size:.95rem}
+ .chartbox.tv-chart{height:220px}
+}
