@@ -1,5 +1,9 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.9",date:"31 Oct 2026",title:"Key voices on X tabs",rows:[
+  ["New Tesla sub-tab","-","Key voices on X","~24 posts from Elon, Ashok, Lars, Franz (last ~12 months) on robotaxi/FSD, Optimus, Cybercab, production, energy; badges vs starter sliders."],
+  ["New SpaceX sub-tab","-","Key voices on X","~16 posts from Elon on Starship/Starlink/xAI plus two third-party reports of Gwynne Shotwell (no public X account found)."],
+  ["UI","-","Filter chips by person and by badge (In / Partly / Not in the model)","Mobile-first cards; newest first; links to x.com. No model totals changed."]]},
  {v:"v6.8",date:"31 Oct 2026",title:"SpaceX Q3 2026 results",rows:[
   ["SPCX share price","US$146.03 (16 Oct close)","US$145.23 (28 Oct close)","Latest close after Q3 results (StockAnalysis / Yahoo)."],
   ["Diluted shares","13.182bn","13.581bn","8,246.5m Class A + 5,334.5m Class B at 15 Oct 2026 (Q3 10-Q cover)."],

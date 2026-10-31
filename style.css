@@ -72,3 +72,26 @@ details.narr code{font-size:.78rem;color:#d2a8ff}
  .tv-title{font-size:.95rem}
  .chartbox.tv-chart{height:220px}
 }
+
+/* Key voices on X */
+.v-filters{margin:8px 0 10px}.v-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px}
+.v-chip{background:#0d1117;color:var(--mu);border:1px solid var(--line);border-radius:999px;padding:5px 10px;font-size:.78rem;cursor:pointer}
+.v-chip.on{color:var(--tx);border-color:var(--ac);background:rgba(227,25,55,.12)}
+.v-list{display:flex;flex-direction:column;gap:10px}
+.v-card{background:#0d1117;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.v-hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:.82rem;margin-bottom:4px}
+.v-hd time{color:var(--mu);white-space:nowrap}
+.v-q{margin:6px 0;font-size:.92rem;line-height:1.4}
+.v-why,.v-mod{margin:4px 0;font-size:.82rem;color:var(--mu);line-height:1.4}
+.v-mod b,.v-why b{color:var(--tx);font-weight:600}
+.v-ft{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.v-badge{display:inline-block;font-size:.72rem;font-weight:600;border-radius:999px;padding:3px 8px;border:1px solid}
+.v-in{color:#3fb950;border-color:#3fb950;background:rgba(63,185,80,.12)}
+.v-part{color:#f0883e;border-color:#f0883e;background:rgba(240,136,62,.12)}
+.v-not{color:#8b949e;border-color:#30363d;background:#161b22}
+.v-link{color:var(--b);font-size:.82rem;text-decoration:none}
+.v-link:hover{text-decoration:underline}
+@media(max-width:480px){
+ .v-q{font-size:.88rem}
+ .v-chip{padding:4px 8px;font-size:.74rem}
+}
