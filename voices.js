@@ -7,7 +7,9 @@ const A={
   ashok:{handle:"aelluswamy",name:"Ashok Elluswamy",role:"VP AI / Autopilot, Tesla"},
   lars:{handle:"larsmoravy",name:"Lars Moravy",role:"VP Vehicle Engineering, Tesla"},
   franz:{handle:"woodhaus2",name:"Franz von Holzhausen",role:"Chief Designer, Tesla"},
-  gwynne:{handle:null,name:"Gwynne Shotwell",role:"President & COO, SpaceX (no public X account found)"}
+  gwynne:{handle:null,name:"Gwynne Shotwell",role:"President & COO, SpaceX (no public X account found)"},
+  nicolls:{handle:"michaelnicollsx",name:"Michael Nicolls",role:"President, xAI / SpaceXAI (also Starlink & AI, SpaceX)"},
+  truell:{handle:"mntruell",name:"Michael Truell",role:"CEO, Cursor (SpaceXAI / Building @SpaceXSI)"}
 };
 // badge: "in" | "part" | "not"
 const TESLA=[
@@ -175,7 +177,63 @@ const SPACEX=[
   q:"[Reported by others] Gwynne Shotwell said Falcon launches will begin to decline this year (130–140)…",
   why:"A claimed Falcon cadence peak would cap near-term Launch revenue even as Starship ramps — relevant if you cut launchG or raise shipProg.",
   badge:"part",part:"Launch growth (launchG 6%) and Starship progress; attributed via third-party posts, not her own account.",
-  url:"https://x.com/Vantadaga/status/2046993831250309571"}
+  url:"https://x.com/Vantadaga/status/2046993831250309571"},
+ {id:"2112642599286690279",d:"2026-10-20",a:"nicolls",
+  q:"SpaceX posted Q3 earnings results and both @Starlink and @spacexai had a standout quarter. Congrats to the team!",
+  why:"Nicolls (xAI president) flags Super Intelligence as a standout Q3 line — the model’s xAI sum-of-parts starts from that Q3 SI revenue (US$7.56bn).",
+  badge:"in",part:"xAI lines from Q3 2026 SI (aiQ total US$7.560bn → starters subs/api/compute/ads)."},
+ {id:"2107293648685601276",d:"2026-10-06",a:"nicolls",
+  q:"Congrats to @reflection_ai - trained on @spacexai compute!",
+  why:"A named third-party training customer on SpaceXAI compute supports the compute-as-a-service line (the largest xAI starter).",
+  badge:"in",part:"compute_r US$22.64bn/yr, compute_g1 20%, compute_m 15%."},
+ {id:"2103513809931714751",d:"2026-09-25",a:"nicolls",
+  q:"Cookin’ in Memphis/Southhaven!  And hiring at a rapid clip for hard-working and talented individuals… join us",
+  why:"Nicolls’ claim that Colossus (Memphis/Southaven) is scaling and hiring hard is evidence for the compute capacity behind compute_r (nameplate 1.7 GW at Q3).",
+  badge:"in",part:"compute_r / compute_g1; capacity itself is not a separate slider."},
+ {id:"2102084752257753184",d:"2026-09-21",a:"nicolls",
+  q:"Congrats to the @spacexai team on the release of 4.7!",
+  why:"A Grok model release from the xAI president is product evidence for the subscriptions and API lines that monetise Grok.",
+  badge:"part",part:"subs_r US$1.68bn/yr and api_r US$3.71bn/yr; model version is not a slider."},
+ {id:"2088276272820670653",d:"2026-08-14",a:"nicolls",
+  q:"Welcome to the @spacexai team! 🚀",
+  why:"Nicolls welcoming Cursor into SpaceXAI marks the close of the US$60bn Cursor deal — Cursor revenue sits inside the API & enterprise starter.",
+  badge:"in",part:"api_r US$3.71bn/yr (incl. Cursor US$0.608bn in Q3 ~1.5 months)."},
+ {id:"2072013394975346697",d:"2026-06-30",a:"nicolls",
+  q:"The unique capabilities of the Colossus datacenters could not be accomplished without the partnership and support from the local Memphis community. Happy to bring affordable and great @SpaceX @Starlink connectivity to our neighbors.",
+  why:"Confirms Colossus as the Memphis compute cluster that underpins the compute rental line; Starlink cross-sell is a side benefit, not a separate xAI slider.",
+  badge:"in",part:"compute_r US$22.64bn/yr (Colossus); Starlink consumer is a separate Starlink line."},
+ {id:"2105736227613974783",d:"2026-10-01",a:"truell",
+  q:"Grok Bot gets useful work done, without you needing to ask.",
+  why:"Proactive Grok Bot behaviour is the agent product the model treats as an early-stage agents scenario (probability-weighted).",
+  badge:"part",part:"agents_p 25%, agents_r1 US$0.5bn in 2028; today’s Bot revenue sits inside subs/API (not disclosed)."},
+ {id:"2102073686970843638",d:"2026-09-21",a:"truell",
+  q:"Grok 4.7 is out! Smarter and more capable, at the same speed and cost.",
+  why:"Truell’s model-release claim (same price/speed, better quality) supports API & Cursor attach without raising unit price — relevant to api growth, not a price slider.",
+  badge:"part",part:"api_r / api_g1 30%; no separate ‘model quality’ or price-per-token slider."},
+ {id:"2095625771541008756",d:"2026-09-03",a:"truell",
+  q:"Grok Bot for enterprise is out today. We're making it free for all Grok and Cursor enterprise customers for the next two weeks. Deploying Bot has felt like onboarding thousands of capable teammates to our company. It is both the most internally adopted and most powerful AI product we've seen so far.",
+  why:"Enterprise Bot free trial + heavy internal adoption is the clearest public signal for the agents scenario and for API/enterprise attach via Cursor.",
+  badge:"part",part:"agents_p / agents_r1; api_r (Cursor enterprise). Free trial itself is not modelled."},
+ {id:"2092672784774394350",d:"2026-08-26",a:"truell",
+  q:"Grok Bot is now available to everyone with a standard Grok or Cursor subscription. It's grown faster than any product we've seen. It's been particularly exciting to see the range of jobs people delegate to Grok Bot, from running small e-commerce businesses (including support, advertising, inventory, finance), coordinating customer events, testing production software, and completing large, mundane parts of users' day-to-day work.",
+  why:"Bundling Bot into Grok/Cursor subs and claiming fastest growth ties agents uptake to the subscriptions and API lines; the model still keeps agents as a separate probability-weighted scenario.",
+  badge:"part",part:"subs_r, api_r, and agents_p (25%); Bot not broken out in reported revenue."},
+ {id:"2088277505933488137",d:"2026-08-14",a:"truell",
+  q:"Cursor has officially joined SpaceX. We’re grateful to become part of such a special company, and it has been a privilege working with the SpaceXAI team. Lots ahead.",
+  why:"CEO confirmation of the Cursor→SpaceX close — Cursor is the main disclosed driver of the jump in API & enterprise starter revenue.",
+  badge:"in",part:"api_r US$3.71bn/yr (incl. Cursor)."},
+ {id:"2087565040677454327",d:"2026-08-12",a:"truell",
+  q:"Excited to release Grok 4.6. With each release, Grok is becoming a more capable digital colleague. 4.6 is significantly better at difficult tasks and knowledge work. It combines Opus-class intelligence and polish with very low cost and high speed.",
+  why:"‘Opus-class at low cost/high speed’ is the competitive claim behind API share and Cursor usage — the model captures price/volume only via api_r and growth, not quality scores.",
+  badge:"part",part:"api_r / api_g1; no benchmark or ‘Opus-class’ slider."},
+ {id:"2087226192512626848",d:"2026-08-11",a:"truell",
+  q:"Grok Bot is out now! An early step towards capable, delightful digital colleagues.",
+  why:"Product launch of Grok Bot is the public start of the agents line the model treats as a 25% probability scenario.",
+  badge:"part",part:"agents_p 25%, agents_r1 US$0.5bn (2028 success case)."},
+ {id:"2074916251743457787",d:"2026-07-08",a:"truell",
+  q:"Excited to release Grok 4.5 with @spacexai. It's an Opus-class model that's fast and low cost. It's a significant step up over any model we've developed so far, including Composer 2.5, and has become the daily driver for many on our team. First of many releases. More soon.",
+  why:"First joint Cursor×SpaceXAI coding/agents model — directly feeds the API & enterprise line (and later Grok Build / Bot) that api_r is built from.",
+  badge:"in",part:"api_r US$3.71bn/yr (Cursor + Grok API); agents still a scenario."}
 ];
 
 function fmtDate(iso){
@@ -233,10 +291,10 @@ function render(elId, posts, authors, note){
   bind(el);
 }
 const noteT="Substantive posts from Elon Musk, Ashok Elluswamy (AI/Autopilot), Lars Moravy (vehicle engineering) and Franz von Holzhausen (design) about robotaxi / FSD, Optimus, Cybercab, production and energy — roughly the last 12 months.";
-const noteS="Substantive posts from Elon Musk about Starship, Starlink, launches, xAI / Colossus and IPO narrative — plus a couple of third-party reports of Gwynne Shotwell comments (she has no public X account we could find).";
+const noteS="Substantive posts from Elon Musk (Starship/Starlink/xAI), Michael Nicolls (xAI president — Colossus/compute/Grok), Michael Truell (Cursor CEO inside SpaceXAI — Grok Bot/API/agents), plus a couple of third-party reports of Gwynne Shotwell (no public X account found). Original co-founders had left by early 2026 and are not included.";
 document.addEventListener("DOMContentLoaded",()=>{
   render("voicesTesla",TESLA,[["elon","Elon"],["ashok","Ashok"],["lars","Lars"],["franz","Franz"]],noteT);
-  render("voicesSpaceX",SPACEX,[["elon","Elon"],["gwynne","Gwynne (reported)"]],noteS);
+  render("voicesSpaceX",SPACEX,[["elon","Elon"],["nicolls","Nicolls"],["truell","Truell"],["gwynne","Gwynne (reported)"]],noteS);
 });
 window.TVVoices={TESLA,SPACEX,A};
 })();

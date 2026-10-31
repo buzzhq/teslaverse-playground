@@ -1,5 +1,9 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.10",date:"31 Oct 2026",title:"xAI leaders on Key voices (SpaceX tab)",rows:[
+  ["SpaceX Key voices — people","Elon + Gwynne (reported)","+ Michael Nicolls (@michaelnicollsx) and Michael Truell (@mntruell)","Current xAI / SpaceXAI president and Cursor CEO (Building @SpaceXSI); original co-founders had left by early 2026."],
+  ["New posts","~16 SpaceX posts","+14 (~6 Nicolls, ~8 Truell) on Colossus/compute, Grok releases, Cursor close, Grok Bot/agents","Same card format and In/Partly/Not badges vs Grok subs, API, agents, compute rental, X ads, orbital DCs."],
+  ["Filter chips","Elon, Gwynne","+ Nicolls, Truell","No model totals changed."]]},
  {v:"v6.9",date:"31 Oct 2026",title:"Key voices on X tabs",rows:[
   ["New Tesla sub-tab","-","Key voices on X","~24 posts from Elon, Ashok, Lars, Franz (last ~12 months) on robotaxi/FSD, Optimus, Cybercab, production, energy; badges vs starter sliders."],
   ["New SpaceX sub-tab","-","Key voices on X","~16 posts from Elon on Starship/Starlink/xAI plus two third-party reports of Gwynne Shotwell (no public X account found)."],
