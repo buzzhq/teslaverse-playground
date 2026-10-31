@@ -1,5 +1,14 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.8",date:"31 Oct 2026",title:"SpaceX Q3 2026 results",rows:[
+  ["SPCX share price","US$146.03 (16 Oct close)","US$145.23 (28 Oct close)","Latest close after Q3 results (StockAnalysis / Yahoo)."],
+  ["Diluted shares","13.182bn","13.581bn","8,246.5m Class A + 5,334.5m Class B at 15 Oct 2026 (Q3 10-Q cover)."],
+  ["Net cash","~US$60.6bn (30 Jun)","~US$51.0bn (30 Sep)","Cash 51.3 + marketable securities 38.6 - debt & finance leases 38.8 (US$bn)."],
+  ["Starlink subscribers / ARPU","12.0m at US$66/mo (Q2)","13.6m at US$69/mo (Q3)","Q3 2026 earnings release (20 Oct 2026)."],
+  ["Quarterly revenue base","Q2 x4: Conn 17.2 + Space 3.8 + AI 10.2 = US$31.3bn","Q3 x4: Conn 21.0 + Space 7.1 + SI 30.2 = US$58.3bn","SI includes Cursor (US$0.61bn in ~1.5 months from 14 Aug close)."],
+  ["xAI / SI line starters","subs 1.32, api 1.00, compute 6.40, ads 1.47","subs 1.68, api 3.71 (incl. Cursor), compute 22.64, ads 2.15","Compute share of SI solutions is an estimate (not disclosed); ads disclosed US$538m."],
+  ["SpaceX starter value","US$256bn (US$19.42/share)","US$381.8bn (US$28.11/share)","Higher revenue base and xAI lines, partly offset by lower net cash and more shares."],
+  ["Trends / compare / learn","Q2 figures","Q3 figures + Q3 25 history","AI capex chart now includes Q3 25 (US$4.76bn) and Q3 26 (US$16.44bn)."]]},
  {v:"v6.7",date:"29 Oct 2026",title:"CoWoS capacity cap + TSMC scale visual on Data Center",rows:[
   ["Nvidia DC revenue","Unconstrained growth path","min(demand, CoWoS × Nvidia share × US$/wafer) each year","Public CoWoS estimates (TrendForce) as a hard packaging ceiling on AI chip sales."],
   ["New DC sliders","-","CoWoS capacity today, capacity growth, Nvidia CoWoS share, revenue per wafer","Starters: 90k wpm, +12%/yr, 60% share, US$0.55bn per thousand wpm (so today's capacity ≈ US$356bn DC)."],

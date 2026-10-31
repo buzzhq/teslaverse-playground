@@ -2,33 +2,35 @@
 (function(){
 const BD = {
  sx: { // SpaceX + xAI (merged 2 Feb 2026; IPO 12 Jun 2026, Nasdaq: SPCX). US$bn unless stated.
-  price: 146.03, priceDate: "16 Oct 2026 close", sharesBn: 13.182, // 7,696.3m Class A + 5,485.5m Class B (10-Q cover)
-  netCash: (93.522+6.487)-(2.525+36.839), // 30 Jun 2026 balance sheet: cash + marketable securities - debt & finance leases
+  price: 145.23, priceDate: "28 Oct 2026 close", sharesBn: 13.581, // 8,246.5m Class A + 5,334.5m Class B at 15 Oct 2026 (Q3 2026 10-Q cover)
+  netCash: (51.294+38.561)-(2.698+36.146), // 30 Sep 2026 balance sheet: cash + marketable securities - debt & finance leases (Q3 2026 release)
   ipoNet: 85.675,
-  subs: 12.0, arpu: 66, connRevAnn: 4.291*4, launchRevAnn: 0.962*4, aiRevAnn: 2.561*4,
-  hist: { q: ["Q1 2026","Q2 2026"], conn: [3.257,4.291], launch: [0.619,0.962], ai: [0.818,2.561], subs: [10.3,12.0] },
-  // Starlink split. Disclosed (Q2 2026 10-Q / release): Consumer 2.485 + Enterprise & Government 1.806 = 4.291 (US$bn, quarter).
+  subs: 13.6, arpu: 69, connRevAnn: 5.248*4, launchRevAnn: 1.767*4, aiRevAnn: 7.560*4, // Q3 2026 x4
+  hist: { q: ["Q1 2026","Q2 2026","Q3 2026"], conn: [3.257,4.291,5.248], launch: [0.619,0.962,1.767], ai: [0.818,2.561,7.560], subs: [10.3,12.0,13.6] },
+  // Starlink split. Disclosed (Q3 2026 release): Consumer 3.121 + Enterprise & Government 2.127 = 5.248 (US$bn, quarter).
   // The E&G split into aviation/maritime (+other enterprise), government/Starshield and direct-to-cell is NOT disclosed:
   // we assume equal thirds (an estimate, clearly labelled on the site).
-  seg: { consumerQ2:2.485, egQ2:1.806, egSplit:{ avm:1/3, gov:1/3, d2c:1/3 }, d2cDevicesM:7.4, d2cSats:650, d2cCountries:30 },
+  seg: { consumerQ:3.121, egQ:2.127, egSplit:{ avm:1/3, gov:1/3, d2c:1/3 }, d2cDevicesM:7.4, d2cSats:650, d2cCountries:30 },
   // Starship progress link (assumptions): at 100% progress, Starlink margin +10 pts (cheaper replacement launches), consumer and
   // direct-to-cell growth +5 pts in years 1-5 (V3 capacity: 60 Tbps per Starship launch vs ~2.8 for Falcon 9 V2 Mini), launch margin +10 pts, launch growth +3 pts.
   shipLink: { connM:0.10, capG:0.05, launchM:0.10, launchG:0.03 },
   starter: { sxDisc:0.10, sxTg:0.03, subG1:0.20, subG2:0.08, arpuChg:-0.03, connM:0.25, launchG:0.06, launchM:0.15,
              avG1:0.164, govG1:0.164, d2cG1:0.164, shipProg:0,
              shipP:15, shipVal:300,
-             // xAI business lines: r = starting revenue (US$bn/yr, Q2 2026 x4 split), g1 = growth yrs 1-5, g2 = growth yrs 6-10, m = cash margin by year 10, p = probability (%)
-             subs_r:1.32, subs_g1:0.25, subs_g2:0.08, subs_m:0.25,
-             api_r:1.00, api_g1:0.30, api_g2:0.10, api_m:0.25,
+             // xAI business lines: r = starting revenue (US$bn/yr, Q3 2026 x4 split), g1 = growth yrs 1-5, g2 = growth yrs 6-10, m = cash margin by year 10, p = probability (%)
+             subs_r:1.68, subs_g1:0.25, subs_g2:0.08, subs_m:0.25,
+             api_r:3.71, api_g1:0.30, api_g2:0.10, api_m:0.25,
              agents_g1:0.60, agents_g2:0.25, agents_m:0.20, agents_p:25, agents_r1:0.5,
-             compute_r:6.40, compute_g1:0.20, compute_g2:0.03, compute_m:0.15,
-             ads_r:1.468, ads_g1:0.00, ads_g2:0.02, ads_m:0.15,
+             compute_r:22.64, compute_g1:0.20, compute_g2:0.03, compute_m:0.15,
+             ads_r:2.152, ads_g1:0.00, ads_g2:0.02, ads_m:0.15,
              gov_r:0.056, gov_g1:0.40, gov_g2:0.10, gov_m:0.20,
              orbital_p:5, orbital_r1:1, orbital_g:0.6, orbital_m:0.25,
              shared_c:2.5 },
-  // Q2 2026 AI segment revenue (US$bn): Advertising 0.367 + AI solutions & infrastructure 2.194 (release). Compute ~1.6 disclosed (call);
-  // the other 0.594 is NOT split in filings - our assumed split: subscriptions 0.330, API/enterprise/data licensing 0.250, government 0.014, agents 0.
-  aiQ2: { total:2.561, ads:0.367, compute:1.6, subs:0.330, api:0.250, gov:0.014, agents:0 },
+  // Q3 2026 SI (ex-AI) segment revenue (US$bn): Advertising 0.538 + SI solutions & infrastructure 7.022 (release), of which Cursor 0.608
+  // (from 14 Aug close; release). Ex-Cursor solutions 6.414 (+192% q/q, "driven primarily by cloud services"). The compute vs Grok split is
+  // NOT disclosed - our ESTIMATE: Grok subs/API/gov ~0.754 (Q2 0.594 +~27%), so compute ~5.660. Cursor (developer tools) is put in API & enterprise.
+  // Q2 2026 was: ads 0.367, compute ~1.6 (call), subs 0.330, api 0.250, gov 0.014.
+  aiQ: { total:7.560, ads:0.538, compute:5.660, subs:0.420, api:0.928, gov:0.014, agents:0 },
   // Fixed starting margins (year 1) per line, ramping linearly to the year-10 slider. Assumptions.
   m0: { subs:0, api:0, agents:-0.5, compute:0.10, ads:0.05, gov:0, orbital:-1 },
   LINES: ["subs","api","agents","compute","ads","gov","orbital","shared"]
@@ -83,6 +85,10 @@ const BD = {
   ["Legal name Space Exploration Technologies Corp.; xAI held via X.AI Holdings (which owns X)","SpaceX filing","https://www.sec.gov/Archives/edgar/data/1181412/000162828026043288/spaceexplorationtechnologi.htm"],
   ["SPCX close US$146.03 (16 Oct 2026); market cap ~US$1.92-1.98tn","Exa / StockAnalysis","https://stockanalysis.com/stocks/spcx/market-cap/"],
   ["SpaceX 2025 revenue US$18.7bn (Connectivity US$11.4bn); Q1 2026 revenue US$4.69bn, Connectivity US$3.26bn, AI US$0.82bn","SpaceX S-1","https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm"],
+  ["Q3 2026: revenue US$14.58bn (Connectivity 5.25, Space 1.77, SI 7.56 incl. Cursor 0.61); Starlink 13.6m consumer subs, ARPU US$69/mo; net income US$4.40bn; Adj. EBITDA US$8.81bn; capex US$19.59bn; compute 1.7 GW; Starship Flight 14 first revenue mission","SpaceX Q3 2026 earnings release (20 Oct 2026)","https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm"],
+  ["Balance sheet 30 Sep 2026: cash 51,294 + marketable securities 38,561 - debt & finance leases 38,844 (US$m) = net cash ~US$51.0bn; shares 8,246.5m Class A + 5,334.5m Class B (15 Oct 2026)","SpaceX Q3 2026 10-Q","https://www.stocktitan.net/sec-filings/SPCX/10-q-space-exploration-technologies-corp-quarterly-earnings-report-b2536cc702ee.html"],
+  ["Q3 2026 call: ex-Cursor SI solutions +192% q/q from cloud services; compute pricing slightly above US$30-50/W; Grok Bot 800k paid weekly users; ads +19% y/y","SpaceX Q3 2026 call transcript","https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/"],
+  ["SPCX close US$145.23 (28 Oct 2026)","StockAnalysis / Yahoo Finance","https://stockanalysis.com/stocks/spcx/history/"],
   ["Q2 2026: revenue US$7.81bn (Connectivity 4.29, Space 0.96, AI 2.56); Starlink 12.0m subs, ARPU US$66/mo; Megapack purchases from Tesla","SpaceX Q2 2026 results","https://www.sec.gov/Archives/edgar/data/1181412/000162828026052515/earningsreleaseq22608042.htm"],
   ["Starship V3 tests (Flight 13, July 2026)","SpaceX Q2 2026 call transcript","https://www.fool.com/earnings/call-transcripts/2026/08/11/spacex-spcx-q2-2026-earnings-call-transcript/"],
   ["Falcon 9: 165 launches in 2025","Reuters","https://www.reuters.com/legal/government/how-math-works-175-trillion-spacex-valuation-2026-04-08/"],
@@ -103,7 +109,7 @@ const pv=(arr,r)=>arr.reduce((s,f,i)=>s+f/Math.pow(1+r,i+1),0), tv=(f,r,g)=>f*(1
 function sxModel(p){ const S=BD.sx, other=S.connRevAnn/(S.subs*S.arpu*12/1000);
  const G=S.seg, K=S.shipLink, sp=(p.shipProg||0)/100, cm=p.connM+K.connM*sp, cap=K.capG*sp;
  let subs=S.subs, arpu=S.arpu, lr=S.launchRevAnn; const star=[],lau=[],subsA=[];
- const segR={consumer:G.consumerQ2*4, avm:G.egQ2*4*G.egSplit.avm, gov:G.egQ2*4*G.egSplit.gov, d2c:G.egQ2*4*G.egSplit.d2c}, segRev={consumer:[],avm:[],gov:[],d2c:[]}, segF={consumer:[],avm:[],gov:[],d2c:[]};
+ const segR={consumer:G.consumerQ*4, avm:G.egQ*4*G.egSplit.avm, gov:G.egQ*4*G.egSplit.gov, d2c:G.egQ*4*G.egSplit.d2c}, segRev={consumer:[],avm:[],gov:[],d2c:[]}, segF={consumer:[],avm:[],gov:[],d2c:[]};
  const later=(1+p.subG2)*(1+p.arpuChg)-1;
  for(let t=1;t<=10;t++){ subs*=1+(t<=5?p.subG1+cap:p.subG2); arpu*=1+p.arpuChg; lr*=1+p.launchG+K.launchG*sp;
   const gr={consumer:(1+(t<=5?p.subG1+cap:p.subG2))*(1+p.arpuChg)-1, avm:t<=5?p.avG1:later, gov:t<=5?p.govG1:later, d2c:t<=5?p.d2cG1+cap:later};
@@ -144,18 +150,21 @@ function checks(){ const out=[]; let ok=true;
    out.push(`Nvidia starter US$${st.ps.toFixed(2)}/share`); }
  // 2) Nvidia base revenue = latest quarter x 4
  const e2=Math.abs(N.dcAnn+N.edgeAnn-96.221*4); if(e2>0.01) ok=false; out.push(`Nvidia base revenue ${(N.dcAnn+N.edgeAnn).toFixed(1)}bn = Q2 FY27 x4`);
- // 3) SpaceX: Starlink revenue rebuilt from subs x ARPU x mix factor equals Q2 annualised
+ // 3) SpaceX: Starlink revenue rebuilt from subs x ARPU x mix factor equals Q3 2026 annualised
  const S=BD.sx, other=S.connRevAnn/(S.subs*S.arpu*12/1000), e3=Math.abs(S.subs*S.arpu*12/1000*other-S.connRevAnn); if(e3>1e-9) ok=false; out.push(`Starlink base revenue rebuild ${S.connRevAnn.toFixed(2)}bn OK`);
  // 4) SpaceX parts add up and probabilities sum to 100
  const m=sxModel(S.starter), e4=Math.abs(m.parts.starlink+m.parts.launch+m.parts.xai+m.parts.starship+m.netCash-m.total); if(e4>1e-9) ok=false; out.push("SpaceX parts + net cash sum to total");
- // 5) xAI lines add up to the xAI value, and the starting revenue split adds up to reported Q2 2026 AI revenue
- const Q=S.aiQ2, e5=Math.abs(S.LINES.reduce((s,k)=>s+m.ai.lines[k].ev,0)-m.parts.xai), q2=Q.ads+Q.compute+Q.subs+Q.api+Q.gov+Q.agents, st=S.starter, e6=Math.abs(q2-Q.total)+Math.abs((st.subs_r+st.api_r+st.compute_r+st.ads_r+st.gov_r)/4-Q.total);
- if(e5>1e-9||e6>0.0005) ok=false; out.push(`xAI lines sum to xAI value (${m.parts.xai.toFixed(1)}bn); line revenue split = Q2 2026 AI revenue ${q2.toFixed(3)}bn`);
+ // 5) xAI lines add up to the xAI value, and the starting revenue split adds up to reported Q3 2026 SI revenue
+ const Q=S.aiQ, e5=Math.abs(S.LINES.reduce((s,k)=>s+m.ai.lines[k].ev,0)-m.parts.xai), q2=Q.ads+Q.compute+Q.subs+Q.api+Q.gov+Q.agents, st=S.starter, e6=Math.abs(q2-Q.total)+Math.abs((st.subs_r+st.api_r+st.compute_r+st.ads_r+st.gov_r)/4-Q.total);
+ if(e5>1e-9||e6>0.0005) ok=false; out.push(`xAI lines sum to xAI value (${m.parts.xai.toFixed(1)}bn); line revenue split = Q3 2026 SI revenue ${q2.toFixed(3)}bn`);
  // 6) Starlink 4-segment split: segments sum to Starlink value; at starter (equal growth, no Starship boost) it equals the old single-line formula.
  { const st=S.starter; let s2=S.subs,a2=S.arpu; const old=[]; for(let t=1;t<=10;t++){ s2*=1+(t<=5?st.subG1:st.subG2); a2*=1+st.arpuChg; old.push(s2*a2*12/1000*other*st.connM); }
    const oldV=pv(old,st.sxDisc)+tv(old[9],st.sxDisc,st.sxTg), sumV=Object.values(m.segV).reduce((a,b)=>a+b,0), e7=Math.abs(sumV-m.parts.starlink), e8=Math.abs(m.parts.starlink/oldV-1);
    if(e7>1e-6||e8>0.002) ok=false; out.push(`Starlink 4 segments sum to Starlink value (${m.parts.starlink.toFixed(1)}bn); starter vs old single-line formula ${(e8*100).toFixed(2)}% diff`);
    const sp=sxModel(Object.assign({},st,{shipProg:100})); if(!(sp.parts.starlink>m.parts.starlink&&sp.parts.launch>m.parts.launch)) ok=false; out.push("Starship progress raises Starlink and Launch values"); }
+ // 7) Q3 2026 data consistency: Consumer + E&G = Connectivity; Space+Connectivity+SI = reported total 14.575
+ { const e9=Math.abs(S.seg.consumerQ+S.seg.egQ-S.connRevAnn/4), e10=Math.abs(S.connRevAnn/4+S.launchRevAnn/4+S.aiRevAnn/4-14.575), e11=Math.abs(S.aiQ.total-S.aiRevAnn/4);
+   if(e9>1e-9||e10>0.0005||e11>1e-9) ok=false; out.push(`Q3 2026 segments add to reported revenue US$${(S.connRevAnn/4+S.launchRevAnn/4+S.aiRevAnn/4).toFixed(3)}bn`); }
  out.push(`SpaceX starter total US$${m.total.toFixed(1)}bn = US$${m.perShare.toFixed(2)}/share`);
  const msg=`[Beyond Tesla checks] ${ok?"PASS":"FAIL"} - `+out.join("; "); (ok?console.log:console.error)(msg); return {ok,msg};
 }
