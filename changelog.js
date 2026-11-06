@@ -1,5 +1,10 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.11",date:"6 Nov 2026",title:"Key voices on X for Nvidia",rows:[
+  ["New Nvidia sub-tab","-","Key voices on X","~20 posts from Jensen Huang (@JensenHuang), Bryan Catanzaro (@ctnzr), Rev Lebaredian (@RevLebaredian) and @nvidia on AI factories, Blackwell/Rubin, CUDA, open models, TSMC and networking."],
+  ["Badges","-","In / Partly / Not vs Nvidia starters","Checked against dcG1/dcG2, edgeG, nvM, nvDisc, CoWoS (cowos0/cowosG/nvCowosShare/revPerCowos)."],
+  ["People without useful X","-","Noted in tab intro","CFO Colette Kress, Ian Buck (@ia_buck dormant), Jonah Alben — no useful recent posts found."],
+  ["Model totals","-","Unchanged","Self-checks still PASS; Nvidia starter US$160.68/share."]]},
  {v:"v6.10",date:"31 Oct 2026",title:"xAI leaders on Key voices (SpaceX tab)",rows:[
   ["SpaceX Key voices — people","Elon + Gwynne (reported)","+ Michael Nicolls (@michaelnicollsx) and Michael Truell (@mntruell)","Current xAI / SpaceXAI president and Cursor CEO (Building @SpaceXSI); original co-founders had left by early 2026."],
   ["New posts","~16 SpaceX posts","+14 (~6 Nicolls, ~8 Truell) on Colossus/compute, Grok releases, Cursor close, Grok Bot/agents","Same card format and In/Partly/Not badges vs Grok subs, API, agents, compute rental, X ads, orbital DCs."],

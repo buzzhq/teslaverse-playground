@@ -9,7 +9,11 @@ const A={
   franz:{handle:"woodhaus2",name:"Franz von Holzhausen",role:"Chief Designer, Tesla"},
   gwynne:{handle:null,name:"Gwynne Shotwell",role:"President & COO, SpaceX (no public X account found)"},
   nicolls:{handle:"michaelnicollsx",name:"Michael Nicolls",role:"President, xAI / SpaceXAI (also Starlink & AI, SpaceX)"},
-  truell:{handle:"mntruell",name:"Michael Truell",role:"CEO, Cursor (SpaceXAI / Building @SpaceXSI)"}
+  truell:{handle:"mntruell",name:"Michael Truell",role:"CEO, Cursor (SpaceXAI / Building @SpaceXSI)"},
+  jensen:{handle:"JensenHuang",name:"Jensen Huang",role:"Founder & CEO, NVIDIA"},
+  bryan:{handle:"ctnzr",name:"Bryan Catanzaro",role:"VP, Applied Deep Learning Research, NVIDIA"},
+  rev:{handle:"RevLebaredian",name:"Rev Lebaredian",role:"VP, Physical AI Simulation, NVIDIA"},
+  nvidia:{handle:"nvidia",name:"NVIDIA",role:"Official company account"}
 };
 // badge: "in" | "part" | "not"
 const TESLA=[
@@ -236,6 +240,89 @@ const SPACEX=[
   badge:"in",part:"api_r US$3.71bn/yr (Cursor + Grok API); agents still a scenario."}
 ];
 
+const NVIDIA=[
+ {id:"2114773600574279837",d:"2026-10-26",a:"jensen",
+  q:"Thank you, Berlin. What a GTC. Europe is building its AI ecosystem and economy, from AI factories to agents to robots. DSX POD: Vera Rubin modular factories built, cabled and tested in the factory, then delivered ready to produce intelligence. … Physical AI: new customers across AI-RAN, robotaxis and robotics. Personal AI: after four years building with Microsoft, RTX Spark brings personal agents to the Windows PC.",
+  why:"Jensen’s GTC claim that Vera Rubin AI-factory pods are shipping, plus edge/robotics and PC agents, is the demand story behind data-centre growth and the smaller Edge line.",
+  badge:"in",part:"dcG1 15% (DC / AI factories) and edgeG 8% (robotics, auto, PCs)."},
+ {id:"2108035064441520342",d:"2026-10-08",a:"jensen",
+  q:"Windows sparked a platform shift that created a new industry for NVIDIA. Then we invented programmable shading GPUs for DirectX, which led to CUDA. Then we partnered to bring GPU supercomputers to Azure, which helped OpenAI train GPT. That collaboration inspired us to reinvent Windows for the age of personal agents.",
+  why:"His CUDA-from-DirectX origin story is the software-moat claim; the model has no separate CUDA slider — durability shows up as continued DC share and margin.",
+  badge:"part",part:"dcG1 / nvM (pricing power); no CUDA or software-moat slider."},
+ {id:"2097118747509268885",d:"2026-09-08",a:"jensen",
+  q:"NVIDIA compute is fungible, durable and highly rentable. It is a productive, revenue-generating asset.",
+  why:"If GPUs stay rentable for years, customers keep buying and financing fleets — supports sustained DC demand rather than a one-cycle spike.",
+  badge:"in",part:"dcG1 15% and dcG2 5% (multi-year DC demand)."},
+ {id:"2095482647355244762",d:"2026-09-03",a:"jensen",
+  q:"Exciting day for NVIDIA and @huggingface. Open models strengthen safety and cybersecurity, accelerate innovation and diffusion, and enable sovereignty. … NVIDIA is going to be a great home for Hugging Face, its community and the future of open models.",
+  why:"Buying Hugging Face is a software/ecosystem bet that could deepen the CUDA+models moat; the model has no M&A or open-models line.",
+  badge:"not",part:"No Hugging Face, open-models or M&A slider; only DC/Edge cash flows."},
+ {id:"2087755674650603534",d:"2026-08-13",a:"jensen",
+  q:"The mighty A100 fleet are mission-capable from 2020 through 2029. NVIDIA computing is more than chips. CUDA gives developers and NVIDIA engineers a common platform to continually upgrade Ampere, Hopper and Blackwell throughout their useful lives. CUDA makes NVIDIA computing versatile. Versatility makes it fungible. Fungibility drives utilization and extends durability, making NVIDIA compute a productive asset: rentable, durable and financeable.",
+  why:"Long useful life + CUDA upgrades is Jensen’s answer to ‘GPUs depreciate fast / ASICs win’ — supports multi-year DC growth and FCF margin if customers keep utilising old and new fleets.",
+  badge:"part",part:"dcG1/dcG2 and nvM 40%; no separate ‘useful life’ or ASIC-competition slider."},
+ {id:"2086976424326693185",d:"2026-08-11",a:"jensen",
+  q:"This is a big moment for computing and @NVIDIA. We’ve made the leap from building chips to creating a new investable asset class: AI factory infrastructure. Every company will be powered by it. Every country will build it.",
+  why:"Framing AI factories as an investable asset class is a claim that DC demand is structural and financeable — the core bull case for dcG1.",
+  badge:"in",part:"dcG1 15% (AI factory demand from today’s ~US$356bn annualised DC)."},
+ {id:"2084656303046332747",d:"2026-08-04",a:"jensen",
+  q:"Today, we’re launching Alpamayo 2 Super, our frontier open reasoning model for autonomous vehicles. … It’s a powerful backbone for robotaxis, trucks, shuttles, delivery vans, tractors and the long tail of mobile robots—billions of autonomous machines someday. … The next wave of AI is robotics—and it starts with autonomous vehicles.",
+  why:"AV/robotics software on Nvidia silicon is the Edge/other growth story (cars, robots), not the data-centre line.",
+  badge:"in",part:"edgeG 8% (Edge Computing: auto, robotics)."},
+ {id:"2080643682408321103",d:"2026-07-24",a:"jensen",
+  q:"For my first post, I’m sharing a letter @NVIDIA signed on why open models matter. AI will transform every industry, power every company, and be built by every country. Open models strengthen safety and cybersecurity, accelerate innovation and diffusion, and enable sovereignty. The world needs both frontier closed models and frontier open models.",
+  why:"Open-models strategy aims to keep developers on Nvidia hardware worldwide; value still flows through chip/DC sales in this model.",
+  badge:"part",part:"dcG1 (developer pull-through); no open-weights revenue line."},
+ {id:"2031762077325406428",d:"2026-03-11",a:"bryan",
+  q:"Announcing NVIDIA Nemotron 3 Super! 120B-12A Hybrid SSM Latent MoE, designed for Blackwell. 36 on AAIndex v4. up to 2.2X faster than GPT-OSS-120B in FP4. Open data, open recipe, open weights. And yes, Ultra is coming!",
+  why:"‘Designed for Blackwell’ open models are meant to drive utilisation and preference for Nvidia GPUs — soft support for DC demand and the CUDA ecosystem.",
+  badge:"part",part:"dcG1; no Nemotron or open-model revenue slider."},
+ {id:"2000567572065091791",d:"2025-12-15",a:"bryan",
+  q:"Today, @NVIDIA is launching the open Nemotron 3 model family, starting with Nano (30B-3A), which pushes the frontier of accuracy and inference efficiency with a novel hybrid SSM Mixture of Experts architecture. Super and Ultra are coming in the next few months.",
+  why:"Open Nemotron releases are a software play to keep inference/training workloads on Nvidia; the model only values resulting chip sales.",
+  badge:"part",part:"dcG1 / nvM; software attach not modelled separately."},
+ {id:"2072715518373777812",d:"2026-07-02",a:"bryan",
+  q:"Why are open technologies for AI so important? How and why is NVIDIA building Nemotron? What can we learn from China’s AI efforts? Great conversation with Matt Turck.",
+  why:"Bryan’s framing of open tech vs China open models is about competitive positioning of the stack; China/export risk is not a dedicated Nvidia slider here.",
+  badge:"not",part:"No China, export-control or open-vs-closed strategy slider."},
+ {id:"2115394940897529903",d:"2026-10-28",a:"rev",
+  q:"An AI factory is a factory. Energy and information in. Intelligence out. The goals are familiar: more useful output per unit of energy, faster time to production, higher yield and uptime. Build it in simulation first. Keep improving it throughout its working life.",
+  why:"Treats AI factories as industrial assets with yield/uptime — aligns with sustained DC buildout rather than a fad purchase cycle.",
+  badge:"in",part:"dcG1 15% (AI factory demand)."},
+ {id:"2113211900158759322",d:"2026-10-22",a:"rev",
+  q:"Agentic AI has unlocked a step change in simulation. … Agents can now take on much of the work connecting engineering tools, data, and models—putting simulation within reach of far more engineers and developers. Our industrial software partners bring decades of engineering knowledge. … That was my message at @NVIDIA GTC Berlin. The opportunity for Europe is enormous.",
+  why:"Physical AI / Omniverse simulation is mostly Edge and software attach; helps the Edge line more than pure DC GPU volume.",
+  badge:"part",part:"edgeG 8%; Omniverse/simulation not a separate line."},
+ {id:"2112292611709165681",d:"2026-10-19",a:"rev",
+  q:"Spent today with the @Siemens team in Erlangen. Preparing circuit-board inspection before the first physical prototype exists—that’s what their engineering knowledge and tools, combined with @nvidia AI and simulation, can enable. Factories need to handle change as well as repetition.",
+  why:"Industrial digital-twin customers are an Edge/physical-AI demand channel, not hyperscaler DC GPUs.",
+  badge:"part",part:"edgeG; no industrial-software revenue breakout."},
+ {id:"2079601314234032474",d:"2026-07-21",a:"nvidia",
+  q:"10x more tokens per megawatt. CoreWeave has the first measured performance of NVIDIA Vera Rubin NVL72, showing 10x improvement in tokens per second per megawatt on DeepSeek-R1 compared to Blackwell.",
+  why:"A claimed 10× tokens/MW leap is why customers refresh to the next architecture — supports multi-year DC growth and higher revenue per packaging wafer if ASPs hold.",
+  badge:"in",part:"dcG1 and revPerCowos US$0.55bn per thousand CoWoS wpm (ASP/mix)."},
+ {id:"2079619127560556869",d:"2026-07-21",a:"nvidia",
+  q:"The NVIDIA Vera Rubin platform is here, with 10x better performance per watt. The NVIDIA ecosystem, including @CoreWeave, @GoogleCloud, @Microsoft, and @Oracle Cloud, are standing up NVIDIA Vera Rubin NVL72 to deliver the lowest token cost for the agentic era.",
+  why:"Named hyperscaler/neocloud customers standing up Rubin is direct evidence for the DC demand path the starter growth assumes.",
+  badge:"in",part:"dcG1 15% from Q2 FY2027 annualised DC (~US$356bn)."},
+ {id:"1991250688622383160",d:"2025-11-19",a:"nvidia",
+  q:"NVIDIA delivers innovation at a one-year rhythm, advancing accelerated computing from Volta to Blackwell, Rubin, and soon Feynman. With each new architecture, the NVIDIA platform delivers a full stack—compute, memory, NVLink, networking, and software all unified by CUDA.",
+  why:"Annual architecture cadence + CUDA full stack is the moat claim vs custom ASICs; the model captures it only via continued DC growth and margin.",
+  badge:"part",part:"dcG1/dcG2 and nvM; no CUDA or networking breakout."},
+ {id:"2061916898925699414",d:"2026-06-02",a:"nvidia",
+  q:"Taiwan isn’t just building AI infrastructure, it’s powering the world’s AI factory buildout. From fabs to factory floors, leaders like TSMC, Foxconn, QCT, Pegatron, and Wistron are using accelerated computing, digital twins, and AI agents to transform how AI systems are…",
+  why:"Names TSMC and Taiwan ODMs as the manufacturing backbone — relevant to the CoWoS capacity ceiling that caps DC revenue in this model.",
+  badge:"in",part:"cowos0 90k wpm, cowosG 12%, nvCowosShare 60%."},
+ {id:"2079633231629144565",d:"2026-07-21",a:"nvidia",
+  q:"NVIDIA Spectrum-6, a 102.4-terabit-per-second Ethernet switch built for the Vera Rubin platform, is now arriving across the world's gigascale AI factories. @CoreWeave, @Microsoft, @NebiusAI @spacexai and @Tesla are among the first to bring in Spectrum-6 to accelerate their AI…",
+  why:"Networking (Spectrum) is part of the AI-factory stack sold with GPUs; this model folds networking into Data Center revenue, with no separate networking slider.",
+  badge:"part",part:"dcG1 (DC includes networking in reported segment); no Spectrum/NVLink line."},
+ {id:"2008310817184264520",d:"2026-01-05",a:"nvidia",
+  q:"This is #NVIDIARubin. Six new chips designed to deliver one incredible AI supercomputer. Built with extreme co-design across compute, networking, and software, Rubin sets a new standard for building and deploying the world’s most advanced AI systems at the lowest possible cost.",
+  why:"Rubin platform launch is the next architecture after Blackwell — the refresh cycle that keeps dcG1 alive if customers upgrade.",
+  badge:"in",part:"dcG1 15%; CoWoS caps via cowos0/cowosG if demand outruns packaging."}
+];
+
 function fmtDate(iso){
   const d=new Date(iso+"T12:00:00Z");
   return d.toLocaleDateString("en-AU",{day:"numeric",month:"short",year:"numeric",timeZone:"Australia/Sydney"});
@@ -292,9 +379,11 @@ function render(elId, posts, authors, note){
 }
 const noteT="Substantive posts from Elon Musk, Ashok Elluswamy (AI/Autopilot), Lars Moravy (vehicle engineering) and Franz von Holzhausen (design) about robotaxi / FSD, Optimus, Cybercab, production and energy — roughly the last 12 months.";
 const noteS="Substantive posts from Elon Musk (Starship/Starlink/xAI), Michael Nicolls (xAI president — Colossus/compute/Grok), Michael Truell (Cursor CEO inside SpaceXAI — Grok Bot/API/agents), plus a couple of third-party reports of Gwynne Shotwell (no public X account found). Original co-founders had left by early 2026 and are not included.";
+const noteN="Substantive posts from Jensen Huang (CEO), Bryan Catanzaro (VP Applied Deep Learning / Nemotron), Rev Lebaredian (VP Physical AI Simulation) and the official @nvidia account about AI factories, Blackwell/Rubin, CUDA durability, open models, TSMC supply and networking — roughly the last 12 months. Colette Kress (CFO), Ian Buck (CUDA) and Jonah Alben had no useful recent public X presence we could find.";
 document.addEventListener("DOMContentLoaded",()=>{
   render("voicesTesla",TESLA,[["elon","Elon"],["ashok","Ashok"],["lars","Lars"],["franz","Franz"]],noteT);
   render("voicesSpaceX",SPACEX,[["elon","Elon"],["nicolls","Nicolls"],["truell","Truell"],["gwynne","Gwynne (reported)"]],noteS);
+  render("voicesNvidia",NVIDIA,[["jensen","Jensen"],["bryan","Bryan"],["rev","Rev"],["nvidia","NVIDIA"]],noteN);
 });
-window.TVVoices={TESLA,SPACEX,A};
+window.TVVoices={TESLA,SPACEX,NVIDIA,A};
 })();
