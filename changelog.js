@@ -1,5 +1,10 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.12",date:"14 Nov 2026",title:"Key voices weekly refresh",rows:[
+  ["Tesla Key voices","-","+5 posts","Cybertruck line to make way for Cybercab (~June/July 2027), Robotaxi Houston, longer robotaxi hours (6am–2am), FSD approved in Latvia."],
+  ["SpaceX Key voices","-","+8 posts","Flight 15 double-catch attempt (booster diverted to Gulf splashdown; ship catch pending), government <10% of revenue (Musk forecast), Terafab, Grok Bot 1.0 / no free tier, Starlink Mobile with Qualcomm, EasyJet, Shotwell ‘AI business by revenue’ (reported)."],
+  ["Nvidia Key voices","-","+3 posts","Jensen Huang no longer CEO (Colette Kress interim, per reports); GR00T 2 and Alpamayo 2 Edge."],
+  ["Model totals","-","Unchanged","No hard new numbers to change sliders; possible moves noted on cards (e.g. Nvidia nvDisc after the CEO exit). Self-checks still PASS."]]},
  {v:"v6.11",date:"6 Nov 2026",title:"Key voices on X for Nvidia",rows:[
   ["New Nvidia sub-tab","-","Key voices on X","~20 posts from Jensen Huang (@JensenHuang), Bryan Catanzaro (@ctnzr), Rev Lebaredian (@RevLebaredian) and @nvidia on AI factories, Blackwell/Rubin, CUDA, open models, TSMC and networking."],
   ["Badges","-","In / Partly / Not vs Nvidia starters","Checked against dcG1/dcG2, edgeG, nvM, nvDisc, CoWoS (cowos0/cowosG/nvCowosShare/revPerCowos)."],
