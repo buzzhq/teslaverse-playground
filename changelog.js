@@ -1,5 +1,11 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.13",date:"21 Nov 2026",title:"Key voices weekly refresh",rows:[
+  ["Tesla Key voices","-","+5 posts","Cybercab for personal purchase (invite only; Musk says ~US$115/month fee is the right level), Cybercab in a second city, FSD approved in Italy, Powercore solid-state transformer (operating 2027)."],
+  ["SpaceX Key voices","-","+4 posts","Flight 15: first Starship ship catch (Ship 42) and 26 Starlink V3 healthy; Shotwell aim to refly a ship by early 2027 (reported); Musk: SpaceX assumes zero sales to OpenAI."],
+  ["Nvidia Key voices","-","+1 post","Jensen Huang admits personal mistakes, confirms board investigation and offers to return as CEO."],
+  ["Model values","-","unchanged","No slider starter values changed. Flight 15 added to SpaceX sources. Possible move for you: Starship progress (shipProg, 0%) or Starship option probability (shipP 15%)."]
+ ]},
  {v:"v6.12",date:"14 Nov 2026",title:"Key voices weekly refresh",rows:[
   ["Tesla Key voices","-","+5 posts","Cybertruck line to make way for Cybercab (~June/July 2027), Robotaxi Houston, longer robotaxi hours (6am–2am), FSD approved in Latvia."],
   ["SpaceX Key voices","-","+8 posts","Flight 15 double-catch attempt (booster diverted to Gulf splashdown; ship catch pending), government <10% of revenue (Musk forecast), Terafab, Grok Bot 1.0 / no free tier, Starlink Mobile with Qualcomm, EasyJet, Shotwell ‘AI business by revenue’ (reported)."],
