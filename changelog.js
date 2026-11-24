@@ -1,5 +1,10 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.15",date:"24 Nov 2026",title:"Victoria data centres: What this suggests",rows:[
+  ["New 'What this suggests' block","-","Above the table on #context/datacentres","Overall takeaway, at-a-glance badges (power use, people nearby, published benefits), findings with one-line takeaways, and a scatter of est. TWh vs density rank."],
+  ["Patterns called out","-","From the 7 sites that have both figures","Power vs density is roughly inverse, except West Footscray; published benefits are mostly construction not ongoing jobs; STACK and Microsoft have data gaps. Patterns, not statistics. No new numbers."],
+  ["Model totals","-","Unchanged","Context only; no slider starter values changed."]
+ ]},
  {v:"v6.14",date:"24 Nov 2026",title:"Victoria data centres tab",rows:[
   ["New Data centres tab","-","Victoria sub-tab at #context/datacentres","Table of Melbourne / Victoria sites: estimated annual electricity use, people nearby, density rank, published jobs and investment, and community impact. Sorted by estimated use."],
   ["Electricity estimates","-","Labelled est. throughout","Capacity × 50% load × 1.3 PUE × 8,760h ≈ 5.7 GWh per MW. Full build-out of operating sites ~6 TWh vs ~1.5 TWh actual statewide use today."],

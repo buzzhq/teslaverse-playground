@@ -114,3 +114,36 @@ details.narr code{font-size:.78rem;color:#d2a8ff}
   .vic-cards{display:flex}
   .vic-chart{height:300px}
 }
+
+/* What this suggests (Victoria data centres) */
+.vic-sug{margin:8px 0 14px}
+.vic-sug .takeaways p{margin:6px 0}
+.vic-findings{padding-left:18px;margin:8px 0 12px}
+.vic-findings li{margin:8px 0;font-size:.9rem;line-height:1.45}
+.vic-hi{display:flex;flex-direction:column;gap:6px;margin:8px 0}
+.vic-hi-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;background:#0d1117;border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.vic-hi-name{flex:1 1 140px;font-weight:600;font-size:.88rem;color:var(--tx);min-width:0}
+.vic-hi-sub{font-weight:400;font-size:.75rem;color:var(--mu)}
+.vic-bds{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+td .vic-bds{margin-top:6px}
+.vic-hi-row .vic-bds{margin-top:0;flex:2 1 220px}
+.vic-bd{display:inline-block;font-size:.7rem;font-weight:600;border-radius:999px;padding:2px 8px;border:1px solid var(--line);white-space:nowrap}
+.vic-bd-pwr-high{color:#f0883e;border-color:#f0883e;background:rgba(240,136,62,.12)}
+.vic-bd-pwr-mid{color:#d2a8ff;border-color:#8957e5;background:rgba(137,87,229,.12)}
+.vic-bd-pwr-low{color:#3fb950;border-color:#3fb950;background:rgba(63,185,80,.12)}
+.vic-bd-pwr-watch{color:#f0883e;border-color:#f0883e;background:rgba(240,136,62,.08)}
+.vic-bd-ppl-high{color:#f0883e;border-color:#f0883e;background:rgba(240,136,62,.12)}
+.vic-bd-ppl-mid{color:#e6edf3;border-color:#30363d;background:#161b22}
+.vic-bd-ppl-low{color:#3fb950;border-color:#3fb950;background:rgba(63,185,80,.12)}
+.vic-bd-ben-big{color:#3fb950;border-color:#3fb950;background:rgba(63,185,80,.12)}
+.vic-bd-ben-claimed{color:#d2a8ff;border-color:#8957e5;background:rgba(137,87,229,.12)}
+.vic-bd-ben-none,.vic-bd-gap{color:#8b949e;border-color:#30363d;background:#161b22}
+.vic-bd-out{color:#f0883e;border-color:#f0883e;background:rgba(240,136,62,.18)}
+tr.vic-out td:first-child,article.vic-card.vic-out,.vic-hi-row.vic-out{box-shadow:inset 3px 0 0 #f0883e}
+.vic-scatter{height:300px;margin:8px 0}
+@media(min-width:700px){.vic-scatter{height:340px}}
+@media(max-width:700px){
+  .vic-scatter{height:280px}
+  .vic-hi-name{flex:1 1 100%}
+  .vic-findings{padding-left:16px;font-size:.88rem}
+}
