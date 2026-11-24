@@ -1,5 +1,11 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.14",date:"24 Nov 2026",title:"Victoria data centres tab",rows:[
+  ["New Data centres tab","-","Victoria sub-tab at #context/datacentres","Table of Melbourne / Victoria sites: estimated annual electricity use, people nearby, density rank, published jobs and investment, and community impact. Sorted by estimated use."],
+  ["Electricity estimates","-","Labelled est. throughout","Capacity × 50% load × 1.3 PUE × 8,760h ≈ 5.7 GWh per MW. Full build-out of operating sites ~6 TWh vs ~1.5 TWh actual statewide use today."],
+  ["Power rules and batteries","-","Short sections on the same tab","Sustainable Data Centre Action Plan (22 Sep 2026), AEMC 30 MW rules (12 Nov 2026), 28 Nov election caveat; Victoria batteries ≈3,100–3,250 MW / 5,300–6,100 MWh, none dedicated to data centres."],
+  ["Model totals","-","Unchanged","Context only; no slider starter values changed."]
+ ]},
  {v:"v6.13",date:"21 Nov 2026",title:"Key voices weekly refresh",rows:[
   ["Tesla Key voices","-","+5 posts","Cybercab for personal purchase (invite only; Musk says ~US$115/month fee is the right level), Cybercab in a second city, FSD approved in Italy, Powercore solid-state transformer (operating 2027)."],
   ["SpaceX Key voices","-","+4 posts","Flight 15: first Starship ship catch (Ship 42) and 26 Starlink V3 healthy; Shotwell aim to refly a ship by early 2027 (reported); Musk: SpaceX assumes zero sales to OpenAI."],
