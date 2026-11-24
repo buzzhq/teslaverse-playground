@@ -115,35 +115,48 @@ details.narr code{font-size:.78rem;color:#d2a8ff}
   .vic-chart{height:300px}
 }
 
-/* What this suggests (Victoria data centres) */
-.vic-sug{margin:8px 0 14px}
-.vic-sug .takeaways p{margin:6px 0}
-.vic-findings{padding-left:18px;margin:8px 0 12px}
-.vic-findings li{margin:8px 0;font-size:.9rem;line-height:1.45}
-.vic-hi{display:flex;flex-direction:column;gap:6px;margin:8px 0}
-.vic-hi-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;background:#0d1117;border:1px solid var(--line);border-radius:8px;padding:8px 10px}
-.vic-hi-name{flex:1 1 140px;font-weight:600;font-size:.88rem;color:var(--tx);min-width:0}
-.vic-hi-sub{font-weight:400;font-size:.75rem;color:var(--mu)}
-.vic-bds{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
-td .vic-bds{margin-top:6px}
-.vic-hi-row .vic-bds{margin-top:0;flex:2 1 220px}
-.vic-bd{display:inline-block;font-size:.7rem;font-weight:600;border-radius:999px;padding:2px 8px;border:1px solid var(--line);white-space:nowrap}
-.vic-bd-pwr-high{color:#f0883e;border-color:#f0883e;background:rgba(240,136,62,.12)}
-.vic-bd-pwr-mid{color:#d2a8ff;border-color:#8957e5;background:rgba(137,87,229,.12)}
-.vic-bd-pwr-low{color:#3fb950;border-color:#3fb950;background:rgba(63,185,80,.12)}
-.vic-bd-pwr-watch{color:#f0883e;border-color:#f0883e;background:rgba(240,136,62,.08)}
-.vic-bd-ppl-high{color:#f0883e;border-color:#f0883e;background:rgba(240,136,62,.12)}
-.vic-bd-ppl-mid{color:#e6edf3;border-color:#30363d;background:#161b22}
-.vic-bd-ppl-low{color:#3fb950;border-color:#3fb950;background:rgba(63,185,80,.12)}
-.vic-bd-ben-big{color:#3fb950;border-color:#3fb950;background:rgba(63,185,80,.12)}
-.vic-bd-ben-claimed{color:#d2a8ff;border-color:#8957e5;background:rgba(137,87,229,.12)}
-.vic-bd-ben-none,.vic-bd-gap{color:#8b949e;border-color:#30363d;background:#161b22}
-.vic-bd-out{color:#f0883e;border-color:#f0883e;background:rgba(240,136,62,.18)}
-tr.vic-out td:first-child,article.vic-card.vic-out,.vic-hi-row.vic-out{box-shadow:inset 3px 0 0 #f0883e}
-.vic-scatter{height:300px;margin:8px 0}
-@media(min-width:700px){.vic-scatter{height:340px}}
-@media(max-width:700px){
-  .vic-scatter{height:280px}
-  .vic-hi-name{flex:1 1 100%}
-  .vic-findings{padding-left:16px;font-size:.88rem}
-}
+/* Victoria data centres story (v6.16) */
+tr.vic-out td:first-child,article.vic-card.vic-out{box-shadow:inset 3px 0 0 #f0883e}
+.vic-toc{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;margin:4px 0 6px;scrollbar-width:none}
+.vic-toc button{flex:0 0 auto;font-size:.8rem;padding:6px 10px;border-radius:999px;white-space:nowrap}
+.vic-gb{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.vic-gb-col{border-radius:10px;padding:10px 12px;border:1px solid var(--line)}
+.vic-gb-col h4{margin:0 0 4px;font-size:.92rem}
+.vic-gb-col ul{margin:0;padding-left:16px}
+.vic-gb-col li{font-size:.84rem;line-height:1.4;margin:5px 0}
+.vic-good{background:rgba(63,185,80,.08);border-color:rgba(63,185,80,.5)}.vic-good h4{color:var(--g)}
+.vic-bad{background:rgba(240,136,62,.08);border-color:rgba(240,136,62,.5)}.vic-bad h4{color:#f0883e}
+.vic-ch{border-top:1px solid var(--line);margin-top:18px;padding-top:4px;scroll-margin-top:12px}
+.vic-ch h3{font-size:1.08rem;display:flex;align-items:center;gap:8px;color:var(--tx)}
+.vic-n{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--b);color:#0d1117;font-size:.85rem;font-weight:700;flex:0 0 auto}
+.vic-ch>p{line-height:1.55}
+.vic-take{background:#0d1117;border-left:3px solid var(--b);border-radius:6px;padding:8px 10px;margin:10px 0;font-size:.9rem}
+.vic-one{border-left-color:#d2a8ff}
+.vic-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.vic-tile,.vic-jobs>div:not(.vic-arrow){background:#0d1117;border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:2px;font-size:.8rem;color:var(--mu);line-height:1.35}
+.vic-big{font-size:1.6rem;font-weight:700;color:var(--tx);line-height:1.1}
+.vic-dim{color:#f0883e}
+.vic-jobs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin:10px 0}
+.vic-arrow{font-size:1.4rem;color:var(--mu)}
+.vic-chart-s{height:230px}
+.vic-list{padding-left:18px}.vic-list li{margin:8px 0;font-size:.9rem;line-height:1.45}
+.vic-tl{border-left:2px solid var(--line);margin:8px 0 12px 6px;padding-left:14px}
+.vic-tl-i{position:relative;margin:0 0 12px;font-size:.88rem;line-height:1.45}
+.vic-tl-i::before{content:"";position:absolute;left:-21px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--b)}
+.vic-tl-next::before{background:#d2a8ff}
+.vic-tl-d{display:block;font-size:.75rem;font-weight:700;color:var(--b);text-transform:uppercase;letter-spacing:.03em}
+.vic-score{display:flex;flex-direction:column;gap:6px;margin:8px 0}
+.vic-sc-row{display:grid;grid-template-columns:minmax(90px,1fr) auto;gap:2px 8px;align-items:center;background:#0d1117;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.88rem}
+.vic-sc-row>span:first-child{font-weight:600}
+.vic-sc-why{grid-column:1/-1;color:var(--mu);font-size:.8rem}
+.vic-pill{font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 10px;justify-self:end}
+.vic-pill.g{color:var(--g);background:rgba(63,185,80,.15)}
+.vic-pill.m{color:#d2a8ff;background:rgba(137,87,229,.18)}
+.vic-pill.b{color:#f0883e;background:rgba(240,136,62,.15)}
+.vic-watch-h{margin:14px 0 4px;font-size:.92rem;color:var(--b)}
+.vic-watch{list-style:none;padding:0;margin:0}.vic-watch li{margin:6px 0;font-size:.9rem}
+details.vic-all{margin-top:22px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#0d1117;scroll-margin-top:12px}
+details.vic-all summary{cursor:pointer;font-weight:700;color:var(--b);list-style:none}
+details.vic-all summary::-webkit-details-marker{display:none}
+@media(min-width:700px){.vic-tiles{grid-template-columns:repeat(4,1fr)}.vic-chart-s{height:250px}}
+@media(max-width:420px){.vic-gb{grid-template-columns:1fr}}

@@ -1,5 +1,11 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.16",date:"25 Nov 2026",title:"Victoria data centres: told as a story",rows:[
+  ["Tab layout","Scattered sections","Five chapters","Why Victoria, The good, The bad, What's being done, The verdict. Each has a plain-English paragraph, one visual and a one-line takeaway, with chapter buttons at the top."],
+  ["Summary","At-a-glance badges, scatter, findings list","Good vs bad card + verdict scorecard","Removed the badges, scatter and findings so nothing repeats; their points are folded into the chapters. New charts: published investment, and today's use vs est. build-out."],
+  ["Site table","Main body","'All the sites' appendix (tap to open)","Same eight columns, per-site chart, method note and sources. No new numbers."],
+  ["Model totals","-","Unchanged","Context only; no slider starter values changed."]
+ ]},
  {v:"v6.15",date:"24 Nov 2026",title:"Victoria data centres: What this suggests",rows:[
   ["New 'What this suggests' block","-","Above the table on #context/datacentres","Overall takeaway, at-a-glance badges (power use, people nearby, published benefits), findings with one-line takeaways, and a scatter of est. TWh vs density rank."],
   ["Patterns called out","-","From the 7 sites that have both figures","Power vs density is roughly inverse, except West Footscray; published benefits are mostly construction not ongoing jobs; STACK and Microsoft have data gaps. Patterns, not statistics. No new numbers."],
