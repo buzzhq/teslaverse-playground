@@ -96,13 +96,13 @@ el.innerHTML=`
   <li>Little published on tax, and STACK and Microsoft say almost nothing</li>
  </ul></div>
 </div>
-<p class="vic-take vic-one"><b>In one line:</b> lots of one-off investment for the west, but a big and growing power bill for the grid, and the new rules only apply to sites that aren't built yet.</p>
+<p class="vic-take vic-one"><b>In one line:</b> lots of one-off investment for the west, but a big and growing power bill for the grid, and the state's new plan isn't retrospective, so it covers new proposals rather than sites already built.</p>
 
 <section class="vic-ch" id="vicCh1">
 <h3><span class="vic-n">1</span>Why Victoria?</h3>
-<p>Cloud services and the AI boom need huge warehouses full of computers. Melbourne's west has big blocks of industrial land close to the city, good power and fibre connections, and room to grow, so the big operators (CDC, AirTrunk, NEXTDC, STACK and Microsoft) have all built there. The state government actively courts them through Invest Victoria.</p>
+<p>Cloud services and the AI boom need huge warehouses full of computers. Most of Melbourne's big campuses (CDC, AirTrunk, STACK, Microsoft and NEXTDC's West Footscray and Tullamarine sites) are in the west and north-west, while NEXTDC's original M1 is in Port Melbourne, near the city. The state's investment agency, <a href="https://www.invest.vic.gov.au/en/explore-your-sector/digital-technology/data-centres" target="_blank" rel="noopener">Invest Victoria</a>, pitches Melbourne to data centre operators: it points to industrial land in the western and northern suburbs, direct network links to Asia, and power it says is seen as more readily available than in Sydney.</p>
 <div class="vic-tiles">
- <div class="vic-tile"><span class="vic-big">8</span><span>sites and clusters on this page, almost all in the west</span></div>
+ <div class="vic-tile"><span class="vic-big">8</span><span>sites and clusters on this page, most in the west and north-west</span></div>
  <div class="vic-tile"><span class="vic-big">~1.5</span><span>TWh a year used by all Victorian data centres today</span></div>
  <div class="vic-tile"><span class="vic-big">~6</span><span>TWh a year if today's operating sites fill up, est.</span></div>
  <div class="vic-tile"><span class="vic-big">~5–6</span><span>TWh a year for <i>each</i> proposed 1,000 MW campus, est.</span></div>
@@ -126,7 +126,7 @@ ${take("the benefits are big but mostly one-off: the jobs are in building them, 
 
 <section class="vic-ch" id="vicCh3">
 <h3><span class="vic-n">3</span>The bad</h3>
-<p>The biggest worry is electricity. If the sites already operating fill up, they could use about four times what all of Victoria's data centres use today, and a single proposed 1,000 MW campus would use about as much again. That means grid upgrades and pressure on power prices. The grid is already struggling to keep up: NEXTDC has paused work on its West Footscray site because Jemena's power upgrades are delayed.</p>
+<p>The biggest worry is electricity. If the sites already operating fill up, they could use about four times what all of Victoria's data centres use today, and a single proposed 1,000 MW campus would use about as much again. That means big grid upgrades, and connections are already a bottleneck: NEXTDC has paused work on its West Footscray site because Jemena's power upgrades are delayed.</p>
 <div class="chartbox vic-chart-s"><canvas id="vicGrowthChart"></canvas></div>
 <p class="note"><b>What this shows:</b> today's actual use vs estimated use at full build-out. Estimates use capacity × 50% load × 1.3 cooling overhead × 8,760 hours (about 5.7 GWh per MW). CDC Laverton (~2.3 TWh est.) is still being built, so it's shown on its own.</p>
 <ul class="vic-list">
@@ -141,12 +141,12 @@ ${take("the costs (power, grid upgrades, a few neighbours) are ongoing, while mo
 <section class="vic-ch" id="vicCh4">
 <h3><span class="vic-n">4</span>What's being done</h3>
 <div class="vic-tl">
- <div class="vic-tl-i"><span class="vic-tl-d">22 Sep 2026</span><div><b>Sustainable Data Centre Action Plan.</b> New data centres must "bring your own power": fund new renewables and storage to match their use, pay their own grid connection, cut back when the grid is strained, and use recycled water where they can. VicGrid gets a say on proposals. <i>Not retrospective:</i> existing sites don't have to change.</div></div>
- <div class="vic-tl-i"><span class="vic-tl-d">12 Nov 2026</span><div><b>AEMC 30 MW rules.</b> Large data centres (30 MW+) must "ride through" grid disturbances instead of dropping off all at once and destabilising the grid.</div></div>
+ <div class="vic-tl-i"><span class="vic-tl-d">22 Sep 2026</span><div><b>Sustainable Data Centre Action Plan.</b> New data centres must "bring your own power": fund new renewables and storage to match their use, pay their own grid connection, cut back when the grid is strained, and use recycled water where they can. VicGrid gets a say on proposals. <i>Not retrospective:</i> it applies to new proposals, not sites already built.</div></div>
+ <div class="vic-tl-i"><span class="vic-tl-d">12 Nov 2026</span><div><b>AEMC 30 MW rules.</b> Large data centres (30 MW+) must stay connected ("ride through") during specified grid disturbances. The AEMC says this is <a href="https://www.aemc.gov.au/sites/default/files/2026-11/info_sheet_-_final_determination.pdf" target="_blank" rel="noopener">intended to reduce the risk of unnecessary or widespread load disconnection</a> (<a href="https://www.aemc.gov.au/rule-changes/improving-nem-access-standards-package-2" target="_blank" rel="noopener">rule page</a>).</div></div>
  <div class="vic-tl-i vic-tl-next"><span class="vic-tl-d">28 Nov 2026</span><div><b>Victorian election.</b> The rules above could change depending on the result.</div></div>
 </div>
 <p><b>Batteries help, but not directly.</b> Victoria has about 3,100–3,250 MW / 5,300–6,100 MWh of batteries operating (AEMO's October list showed about 2,188 MW in service), including the Victorian Big Battery at Geelong, the Melbourne Renewable Energy Hub, Koorangie and Rangebank. They back up the whole grid. None is dedicated to a data centre. Two proposals would pair storage with new computing: the Plumpton AI Hub and Hazelwood North.</p>
-${take("the rules now push new campuses to bring their own clean power, but today's sites are grandfathered.")}
+${take("new proposals now have to bring their own clean power, but the plan isn't retrospective, so it doesn't cover sites already built.")}
 </section>
 
 <section class="vic-ch" id="vicCh5">
@@ -156,7 +156,7 @@ ${take("the rules now push new campuses to bring their own clean power, but toda
  <div class="vic-sc-row"><span>Jobs</span><span class="vic-pill m">Mixed</span><span class="vic-sc-why">Big to build, small to run</span></div>
  <div class="vic-sc-row"><span>Where they're built</span><span class="vic-pill g">Good</span><span class="vic-sc-why">Industrial west, except West Footscray</span></div>
  <div class="vic-sc-row"><span>Power and grid</span><span class="vic-pill b">Bad</span><span class="vic-sc-why">~4× today's use if sites fill, est.</span></div>
- <div class="vic-sc-row"><span>Rules</span><span class="vic-pill m">Mixed</span><span class="vic-sc-why">Strong for new sites, none for existing ones</span></div>
+ <div class="vic-sc-row"><span>Rules</span><span class="vic-pill m">Mixed</span><span class="vic-sc-why">Covers new proposals; not retrospective</span></div>
  <div class="vic-sc-row"><span>Transparency</span><span class="vic-pill b">Bad</span><span class="vic-sc-why">No power, tax or (for some) jobs figures</span></div>
 </div>
 <p><b>Overall:</b> a net positive for investment and a manageable local footprint so far, but the bill is power. Whether it stays positive depends on the giant proposed campuses actually bringing their own renewables.</p>
