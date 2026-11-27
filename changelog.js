@@ -1,5 +1,11 @@
 // Version history: old vs new values and why. Newest first. Add an entry whenever data or the model changes.
 window.TV_CHANGES=[
+ {v:"v6.17",date:"28 Nov 2026",title:"Key voices weekly refresh",rows:[
+  ["Tesla Key voices","-","+3 posts","FSD v15 rolling out (Tesla claims 25× better handling of safety-critical cases), one vision model shared by FSD, Robotaxi and Optimus, v15 needs less in-car compute (Ashok)."],
+  ["SpaceX Key voices","-","+5 posts","Two SpaceX shares for every US child (announced on X, no filing yet), Colossus 3 in Arizona (US$50bn+ per @SpaceX), Starlink in 30 of 54 African countries, US$738m subsidies given up for free kits (reported), 32-hour Falcon 9 pad turnaround."],
+  ["Nvidia Key voices","-","+0 posts","No substantive new posts this week."],
+  ["Model values","-","unchanged","No slider starter values changed. Possible moves for you: sharesBn 13.581 if a filing confirms the children’s share grant; compute_g1 20% for Colossus 3."]
+ ]},
  {v:"v6.16.1",date:"25 Nov 2026",title:"Victoria data centres: wording fixes",rows:[
   ["Chapter 1 locations","'Melbourne's west… all built there'","West and north-west; NEXTDC M1 in Port Melbourne","Fixed the location claim. Replaced 'good power and fibre' with what Invest Victoria's own data centre page says (linked)."],
   ["Chapter 3","'pressure on power prices'","Removed","No AEMO/AEMC/Victorian government source found to link."],
